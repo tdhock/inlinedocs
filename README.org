@@ -5,7 +5,8 @@ Markus Muller.
 
 To install the non-official inlinedocs in this repository, use
 
-```s
+#+BEGIN_SRC R
 install.packages("devtools")
 devtools::install_github("tdhock/inlinedocs")
-```
+#+END_SRC
+
