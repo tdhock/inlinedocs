@@ -1,0 +1,6 @@
+import(methods, utils)
+
+exportPattern("^[[:alpha:]]+")
+
+S3method("combine", "character")
+S3method("combine", "list")

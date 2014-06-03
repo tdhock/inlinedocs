@@ -1,0 +1,12 @@
+Package: silly
+Title: Exhaustive example of inlinedocs extended tags
+Type: Package
+Version: 1.0
+Date: 2009-11-12
+Author: Keith Ponting
+Maintainer: Keith Ponting <k.ponting@aurix.com>
+Description: Attempt to exercise many variants of the extended ##<< tags for inline docs.
+URL: http://inlinedocs.r-forge.r-project.org
+License: GPL-3
+LazyLoad: yes
+Depends: methods
