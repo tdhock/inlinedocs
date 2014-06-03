@@ -1,0 +1,11 @@
+inlinedocs
+
+The main inlinedocs repos on R-Forge is undergoing a re-write by
+Markus Muller.
+
+To install the non-official inlinedocs in this repository, use
+
+```s
+install.packages("devtools")
+devtools::install_github("tdhock/inlinedocs")
+```
