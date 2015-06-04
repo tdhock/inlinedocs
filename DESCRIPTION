@@ -1,7 +1,7 @@
 Package: inlinedocs
 Title: Convert inline comments to documentation
 Type: Package
-Version: 2014.6.3
+Version: 2015.06.04
 Authors@R: c(person("Toby Dylan","Hocking",role=c("aut","cre"),
 	   email="toby@sg.cs.titech.ac.jp"),
 	  person("Keith","Ponting",role="aut"),

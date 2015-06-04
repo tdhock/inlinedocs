@@ -739,16 +739,6 @@ extra.code.docs <- function # Extract documentation from code chunks
 default.parsers <-
   c(extra.code.docs=extra.code.docs, ## TODO: cleanup!
     sapply(forfun.parsers,forfun),
-    edit.package.file=function(desc,...){
-      in.details <- setdiff(colnames(desc),"Description")
-      details <- sprintf("%s: \\tab %s\\cr",in.details,desc[,in.details])
-      L <-
-        list(list(title=desc[,"Title"],
-                  description=desc[,"Description"],
-                  `tabular{ll}`=details))
-      names(L) <- paste(desc[,"Package"],"-package",sep="")
-      L
-    },
     sapply(forall.parsers,forall)
     )
 

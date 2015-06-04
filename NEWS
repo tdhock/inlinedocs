@@ -17,6 +17,12 @@ Rd generation for attrSetter<- functions?
 Functions with {} as default arguments => error. See
 etc/default-function.R
 
+2015.06.04
+
+Tests pass with R-3.2.0, after fixing some bugs with escaping percents
+in quoted text in the R code of usage sections of Rd files
+(testfiles/escape.percent.R).
+
 2014.6.3
 
 Forked to tdhock/github.

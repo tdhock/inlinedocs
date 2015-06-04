@@ -86,7 +86,8 @@ make.package.and.check <- function
                  pkgdir)
   if(verbose)cat(cmd,"\n")
   checkLines <- system(cmd,intern=TRUE)
-  warnLines <- grep("(WARNING|ERROR)",checkLines,value=TRUE)
+  all.warnLines <- grep("(WARNING|ERROR)",checkLines,value=TRUE)
+  warnLines <- grep("Status|exercises", all.warnLines, value=TRUE, invert=TRUE)
   if(length(warnLines)>0){
     print(warnLines)
     stop("ERROR/WARNING encountered in package check!")
