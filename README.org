@@ -1,5 +1,7 @@
 [[http://inlinedocs.r-forge.r-project.org/][inlinedocs]]
 
+[[https://travis-ci.org/tdhock/inlinedocs][https://travis-ci.org/tdhock/inlinedocs.svg]]
+
 As of 3 June 2014, inlinedocs from R-Forge and CRAN are deprecated
 (please do not use them). To install the up-to-date inlinedocs from
 this GitHub repository,
