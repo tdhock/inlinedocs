@@ -2,8 +2,6 @@ tdir <- system.file("testfiles",package="inlinedocs")
 testfiles <- Sys.glob(file.path(tdir,"*.R"))
 library(inlinedocs)
 options(warn=2)
-library(parallel)
-options(mc.cores=detectCores())
 output.and.error <- function(f){
   output <- capture.output({
     result <- try(test.file(f, verbose=FALSE))
@@ -11,7 +9,13 @@ output.and.error <- function(f){
   list(output=output,
        result=result)
 }
-result.lists <- mclapply(testfiles, output.and.error)
+LAPPLY <- if(interactive() && require(parallel)){
+  options(mc.cores=detectCores())
+  mclapply
+}else{
+  lapply
+}
+result.lists <- LAPPLY(testfiles, output.and.error)
 names(result.lists) <- testfiles
 is.error <- sapply(result.lists, function(L)inherits(L$result, "try-error"))
 failed <- result.lists[is.error]
