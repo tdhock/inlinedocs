@@ -4,5 +4,22 @@ library(inlinedocs)
 options(warn=2)
 library(parallel)
 options(mc.cores=detectCores())
-mclapply(testfiles, test.file, verbose=FALSE)
-
+output.and.error <- function(f){
+  output <- capture.output({
+    result <- try(test.file(f, verbose=FALSE))
+  })
+  list(output=output,
+       result=result)
+}
+result.lists <- mclapply(testfiles, output.and.error)
+names(result.lists) <- testfiles
+is.error <- sapply(result.lists, function(L)inherits(L$result, "try-error"))
+failed <- result.lists[is.error]
+if(length(failed)){
+  for(f in names(failed)){
+    output <- failed[[f]]$output
+    cat("\n\n", f, "\n")
+    cat(paste(output, collapse="\n"))
+  }
+  stop("test failures")
+}

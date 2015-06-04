@@ -28,7 +28,7 @@ silly.example <- function
     res <- list(x=7, ##<< x coordinate
                 z= ##<< z describes everything else
                 ##describe<<
-                list(colour=green, ##<< colour of line
+                list(colour="green", ##<< colour of line
                      width=2),     ##<< width of line
                 ##end<<
                 ## and this line should get into documentation for z
@@ -42,7 +42,7 @@ silly.example <- function
 ### invisible something not unrelated to first
 }
 
-setClass("Silly", # S4 classes can be documented as well
+setClass("SillyTest", # S4 classes can be documented as well
 ### The Silly class does nothing much either
          ##details<< Put what you like in documentation details,
          ## but ideally reference construction methods.

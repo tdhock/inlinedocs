@@ -28,7 +28,7 @@ silly.example <- function
     res <- list(x=7, ##<< x coordinate
                 z= ##<< z describes everything else
                 ##describe<<
-                list(colour=green, ##<< colour of line
+                list(colour="green", ##<< colour of line
                      width=2),     ##<< width of line
                 ##end<<
                 ## and this line should get into documentation for z

@@ -1,9 +1,8 @@
-inlinedocs
+[[http://inlinedocs.r-forge.r-project.org/][inlinedocs]]
 
-The main inlinedocs repos on R-Forge is undergoing a re-write by
-Markus Muller.
-
-To install the non-official inlinedocs in this repository, use
+As of 3 June 2014, inlinedocs from R-Forge and CRAN are deprecated
+(please do not use them). To install the up-to-date inlinedocs from
+this GitHub repository,
 
 #+BEGIN_SRC R
 install.packages("devtools")

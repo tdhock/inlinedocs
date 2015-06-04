@@ -961,11 +961,11 @@ apply.parsers <- function
   if(verbose)cat("Applying parsers:\n")
   for(i in seq_along(parsers)){
     N <- names(parsers[i])
-    #mm if(verbose){
+    if(verbose){
       if(is.character(N) && N!=""){
         cat(" this is parser:",N,"\n",sep="")
       }else cat('.\n')
-    #mm }
+    }
     p <- parsers[[i]]
     ## This is the argument list that each parser receives:
     L <- p(code=code,objs=objs,docs=docs,env=e,...)

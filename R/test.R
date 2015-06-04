@@ -94,6 +94,7 @@ make.package.and.check <- function
   ignore.regex <- paste(ignore.lines, collapse="|")
   badLines <- grep(ignore.regex, all.warnLines, value=TRUE, invert=TRUE)
   if(length(badLines)>0){
+    cat(paste(checkLines, collapse="\n"), "\n")
     print(badLines)
     stop("ERROR/WARNING/NOTE encountered in package check!")
   }
@@ -108,5 +109,6 @@ save.test.result <- function
   .result <- extract.docs.file(f)
   dump(".result",tmp <- tempfile(),control=NULL)
   lines <- readLines(tmp)
-  cat(paste(lines,"\n"))
+  escaped <- gsub("\\dots", "\\\\dots", lines, fixed=TRUE)
+  cat(paste(escaped, "\n"))
 }
