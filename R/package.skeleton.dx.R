@@ -578,7 +578,12 @@ modify.Rd.file <- function
     }
   })
   if(length(parsed)){
-	  utxt <- sprintf("usage{%s}\n",paste(format(parsed[[1]]),collapse="\n"))
+    ## by default R uses width.cutoff=60L but that results in wide
+    ## lines with more than 90 characters (which generates a NOTE on R
+    ## CMD check) for some functions such as testfiles/wide.lines.R
+    ## Thanks to Jannis v. Buttlar for the bug report.
+    usage.vec <- deparse(parsed[[1]], width.cutoff=50L)
+    utxt <- sprintf("usage{%s}\n",paste(usage.vec,collapse="\n"))
   }
   if(length(grep("usage[{]data",utxt))){
     utxt <- gsub("data[(]([^)]*)[)]","\\1",utxt)
