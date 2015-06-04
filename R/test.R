@@ -86,11 +86,16 @@ make.package.and.check <- function
                  pkgdir)
   if(verbose)cat(cmd,"\n")
   checkLines <- system(cmd,intern=TRUE)
-  all.warnLines <- grep("(WARNING|ERROR)",checkLines,value=TRUE)
-  warnLines <- grep("Status|exercises", all.warnLines, value=TRUE, invert=TRUE)
-  if(length(warnLines)>0){
-    print(warnLines)
-    stop("ERROR/WARNING encountered in package check!")
+  all.warnLines <- grep("WARNING|ERROR|NOTE",checkLines,value=TRUE)
+  ignore.lines <-
+    c("Status",
+      "exercises",
+      "incoming feasibility")
+  ignore.regex <- paste(ignore.lines, collapse="|")
+  badLines <- grep(ignore.regex, all.warnLines, value=TRUE, invert=TRUE)
+  if(length(badLines)>0){
+    print(badLines)
+    stop("ERROR/WARNING/NOTE encountered in package check!")
   }
 }
 

@@ -16,7 +16,7 @@ Description: Generates Rd files from R source code with comments.
  (3) examples are defined in R code, not comments.
  It is also easy to define a new syntax.
 URL: http://inlinedocs.r-forge.r-project.org
-Depends: methods, utils, R (>= 2.9)
+Depends: methods, utils, R (>= 2.9), parallel
 License: GPL-2 | GPL-3
 LazyLoad: yes
 Encoding: UTF-8

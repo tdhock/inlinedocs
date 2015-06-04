@@ -2,8 +2,7 @@ tdir <- system.file("testfiles",package="inlinedocs")
 testfiles <- Sys.glob(file.path(tdir,"*.R"))
 library(inlinedocs)
 options(warn=2)
-for(f in testfiles){
-  print(f)
-  test.file(f,verbose=FALSE)
-}
+library(parallel)
+options(mc.cores=detectCores())
+mclapply(testfiles, test.file, verbose=FALSE)
 
