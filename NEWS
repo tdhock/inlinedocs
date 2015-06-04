@@ -23,6 +23,10 @@ Tests pass with R-3.2.0, after fixing some bugs with escaping percents
 in quoted text in the R code of usage sections of Rd files
 (testfiles/escape.percent.R).
 
+For testfiles/wide.lines.R, now that we use deparse(width.cutoff=50L)
+rather than the default of 60 (which caused a NOTE for a line longer
+than 90 characters on R CMD check).
+
 2014.6.3
 
 Forked to tdhock/github.
