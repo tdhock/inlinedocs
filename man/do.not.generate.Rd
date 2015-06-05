@@ -23,7 +23,7 @@ file.copy(silly.pkg,".",recursive=TRUE)
 
 ## define a custom Parser Function that will not generate some Rd
 ## files
-custom <- do.not.generate("silly-package","Silly-class")
+custom <- do.not.generate("SillyTest-class")
 parsers <- c(default.parsers,list(exclude=custom))
 
 ## At first, no Rd files in the man subdirectory.
@@ -33,7 +33,7 @@ dir(man.dir)
 ## Running package.skeleton.dx will generate bare-bones files for
 ## those specified in do.not.generate, if they do not exist.
 package.skeleton.dx("silly",parsers)
-Rd.files <- c("silly-package.Rd","Silly-class.Rd","silly.example.Rd")
+Rd.files <- c("Silly-class.Rd","silly.example.Rd")
 Rd.paths <- file.path(man.dir,Rd.files)
 stopifnot(all(file.exists(Rd.paths)))
 

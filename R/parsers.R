@@ -1,4 +1,3 @@
-
 do.not.generate <- structure(function
 ### Make a Parser Function used to indicate that certain Rd files
 ### should not be generated.
@@ -22,7 +21,7 @@ do.not.generate <- structure(function
 
   ## define a custom Parser Function that will not generate some Rd
   ## files
-  custom <- do.not.generate("silly-package","Silly-class")
+  custom <- do.not.generate("SillyTest-class")
   parsers <- c(default.parsers,list(exclude=custom))
 
   ## At first, no Rd files in the man subdirectory.
@@ -32,7 +31,7 @@ do.not.generate <- structure(function
   ## Running package.skeleton.dx will generate bare-bones files for
   ## those specified in do.not.generate, if they do not exist.
   package.skeleton.dx("silly",parsers)
-  Rd.files <- c("silly-package.Rd","Silly-class.Rd","silly.example.Rd")
+  Rd.files <- c("SillyTest-class.Rd","silly.example.Rd")
   Rd.paths <- file.path(man.dir,Rd.files)
   stopifnot(all(file.exists(Rd.paths)))
   
@@ -50,8 +49,7 @@ do.not.generate <- structure(function
   rownames(mtimes) <- Rd.files
   mtimes$changed <- mtimes$old != mtimes$new
   print(mtimes)
-  stopifnot(mtimes["silly-package.Rd","changed"]==FALSE)
-  stopifnot(mtimes["Silly-class.Rd","changed"]==FALSE)
+  stopifnot(mtimes["SillyTest-class.Rd","changed"]==FALSE)
   stopifnot(mtimes["silly.example.Rd","changed"]==TRUE)
 
   unlink("silly",recursive=TRUE)

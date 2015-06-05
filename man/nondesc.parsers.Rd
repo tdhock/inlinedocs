@@ -4,7 +4,7 @@
 \title{nondesc parsers}
 \description{Parsers that operate only on R code, independently of the
 description file.}
-\usage{nondesc.parsers}
+\usage{"nondesc.parsers"}
 
 
 

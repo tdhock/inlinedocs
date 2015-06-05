@@ -6,8 +6,9 @@ metadata. After reading the pkgdir/R/*.R code files to find inline
 documentation (by default R code in *.r files will not be used for
 inlinedocs), writes docs to pkgdir/man/*.Rd files, possibly
 overwriting the previous files there.}
-\usage{package.skeleton.dx(pkgdir = "..", parsers = NULL, namespace = FALSE, 
-    excludePattern = "[.][rsqS]$", ...)}
+\usage{package.skeleton.dx(pkgdir = "..", parsers = NULL, 
+    namespace = FALSE, excludePattern = "[.][rsqS]$", 
+    ...)}
 \arguments{
   \item{pkgdir}{Package directory where the DESCRIPTION file lives. Your code
 should be in pkgdir/R.}

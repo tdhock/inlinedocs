@@ -5,7 +5,7 @@
 \description{Parsers for each function that are constructed automatically. This
 is a named list, and each element is a parser function for an
 individual object.}
-\usage{forfun.parsers}
+\usage{"forfun.parsers"}
 
 
 

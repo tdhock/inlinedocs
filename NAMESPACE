@@ -1,4 +1,4 @@
-import(methods, utils)
+import(methods, utils, parallel)
 
 exportPattern("^[[:alpha:]]+")
 

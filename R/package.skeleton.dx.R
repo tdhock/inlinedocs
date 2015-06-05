@@ -477,11 +477,10 @@ modify.Rd.file <- function
   ## for instance generic functions that are already defined in other packages
   ## like print or plot so there is still the possibillity that 
   ## f is missing altogether
-  if (!file.exists(f)) {
-	print("mm missing file")
-	print(f)
-	return()
-	}
+  if(!file.exists(f)) {
+    cat("doc list but no Rd file:", f, "\n")
+    return()
+  }
   dlines <- readLines(f)
 
   if ( "alias" %in% names(d) ){
