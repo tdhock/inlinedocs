@@ -490,7 +490,6 @@ modify.Rd.file <- function
     d[["alias"]] <- paste(paste(N,"}\n\\alias{",sep=""),
                             d[["alias"]],sep="")
   }
-  
 
   # PhG: in the special case of custom operators like %....%, we must protect
   # these strings in name, alias and usage (at least)! Otherwise, bad things
