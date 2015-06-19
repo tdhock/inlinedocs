@@ -17,6 +17,10 @@ Rd generation for attrSetter<- functions?
 Functions with {} as default arguments => error. See
 etc/default-function.R
 
+2015.05.15
+
+Add Maintainer to DESCRIPTION.
+
 2015.06.05
 
 bugfix for example(do.not.generate).

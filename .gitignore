@@ -1,0 +1,4 @@
+*.Rcheck
+.Rhistory
+.svn
+*~
