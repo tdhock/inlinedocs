@@ -93,3 +93,18 @@ fixPackageFileNames <- function(list){
   list0
 }
 
+### Create a fake package environment in a way that keeps S4 working (so
+### there is a .packageName) and also conforms to byte-code interpreter
+### requirements on environment structure, particularly ensuring that the
+### created environment is a namespace.  A similar procedure (with the
+### exception of not deleting objects) is now in testthat (test_pkg_env).
+fake_package_env <- function() {
+  idocsns <- getNamespace("inlinedocs")
+  e <- list2env(as.list(idocsns, all.names = TRUE), parent = parent.env(idocsns))
+    # deep copies the inlinedocs namespace environment
+    # including all meta-data, so the result will be a namespace
+  rm(list=ls(e), envir=e)
+    # deletes regular objects, but keeps the namespace meta-data
+    # and also .packageName
+  e
+}
