@@ -934,7 +934,7 @@ apply.parsers <- function
  ...
 ### Additional arguments to pass to Parser Functions.
  ){
-  e <- new.env()
+  e <- fake_package_env()
   ## KMP 2011-03-09 fix problem with DocLink when inlinedocs ran on itself
   ## Error in assignClassDef(Class, classDef, where) :
   ##   Class "DocLink" has a locked definition in package "inlinedocs"
@@ -945,9 +945,6 @@ apply.parsers <- function
   old <- options(keep.source=TRUE,topLevelEnvironment=e)
   on.exit(options(old))
   exprs <- parse(text=code)
-  ## TDH 2011-04-07 set this so that no warnings about creating a fake
-  ## package when we try to process S4 classes defined in code
-  e$.packageName <- "inlinedocs.processor"
   for (i in exprs){
       eval(i, e)
   }

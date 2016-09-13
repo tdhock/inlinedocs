@@ -400,13 +400,10 @@ code
   # some functionality of apply.parsers (evaluating the sources again)
   # but I am not sure how big the changes involved woud be.
   
-  e <- new.env()
+  e <- fake_package_env()
   old <- options(keep.source=TRUE,topLevelEnvironment=e)
   on.exit(options(old))
   exprs <- parse(text=code)
-  ## set this so that no warnings about creating a fake
-  ## package when we try to process S4 classes defined in code
-  e$.packageName <- "inlinedocs.processor"
   for (i in exprs){
       eval(i, e)
   }
