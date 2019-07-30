@@ -612,12 +612,12 @@ forall.parsers <-
            obj.names,
            ")",
            "(?!})" #not } after
-           )
-         L <- lapply(doc, function(subject){
+         )
+         doc[sections] <- lapply(doc[sections], function(subject){
            gsub(obj.pattern, "\\\\code{\\\\link{\\1}}", subject, perl=TRUE)
          })
-         L$.overwrite <- TRUE
-         L
+         doc$.overwrite <- TRUE
+         doc
        })
 
 ### List of parser functions that operate on single objects. This list
