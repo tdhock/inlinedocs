@@ -526,120 +526,122 @@ leadingS3generic <- function # check whether function name is an S3 generic
 ### Parsers for each function that are constructed automatically. This
 ### is a named list, and each element is a parser function for an
 ### individual object.
-forfun.parsers <-
-  list(prefixed.lines=prefixed.lines,
-       extract.xxx.chunks=extract.xxx.chunks,
-       ## title from first line of function def
-       title.from.firstline=function(src,...){
-         first <- src[1]
-         if(!is.character(first))return(list())
-         if(!grepl("#",first))return(list())
-         list(title=gsub("[^#]*#\\s*(.*)","\\1",first,perl=TRUE))
-       },
-       ## PhG: it is tests/FUN.R!!! I would like more flexibility here
-       ## please, let me choose which dir to use for examples!
-       ## Get examples for FUN from the file tests/FUN.R
-       examples.from.testfile=function(name,...){
-         tsubdir <- getOption("inlinedocs.exdir")
-         if (is.null(tsubdir)) tsubdir <- "tests"	# Default value
-         tfile <- file.path("..",tsubdir,paste(name,".R",sep=""))
-         if(file.exists(tfile))
-           list(examples=readLines(tfile))
-         else list()
-       },
-       definition.from.source=function(doc,src,...){
-         def <- doc$definition
-         is.empty <- function(x)is.null(x)||x==""
-         if(is.empty(def) && !is.empty(src))
-           list(definition=src)
-         else list()
-       })
+forfun.parsers <- list(
+  prefixed.lines=prefixed.lines,
+  extract.xxx.chunks=extract.xxx.chunks,
+  ## title from first line of function def
+  title.from.firstline=function(src,...){
+    first <- src[1]
+    if(!is.character(first))return(list())
+    if(!grepl("#",first))return(list())
+    list(title=gsub("[^#]*#\\s*(.*)","\\1",first,perl=TRUE))
+  },
+  ## PhG: it is tests/FUN.R!!! I would like more flexibility here
+  ## please, let me choose which dir to use for examples!
+  ## Get examples for FUN from the file tests/FUN.R
+  examples.from.testfile=function(name,...){
+    tsubdir <- getOption("inlinedocs.exdir")
+    if (is.null(tsubdir)) tsubdir <- "tests"	# Default value
+    tfile <- file.path("..",tsubdir,paste(name,".R",sep=""))
+    if(file.exists(tfile))
+      list(examples=readLines(tfile))
+    else list()
+  },
+  definition.from.source=function(doc,src,...){
+    def <- doc$definition
+    is.empty <- function(x)is.null(x)||x==""
+    if(is.empty(def) && !is.empty(src))
+      list(definition=src)
+    else list()
+  })
 
 ### List of Parser Functions that can be applied to any object.
-forall.parsers <-
-  list(## Fill in author from DESCRIPTION and titles.
-       author.from.description=function(desc,...){
-         list(author=desc[,"Author"])
-       },
-       ## The format section sometimes causes problems, so erase it.
-       erase.format=function(...){
-         list(format="")
-       },
-       ## Convert the function name to a title.
-       title.from.name=function(name,doc,...){
-         if("title"%in%names(doc))list() else
-         list(title=gsub("[._]"," ",name))
-       },
-       ## PhG: here is what I propose for examples code in the 'ex' attribute
-       examples.in.attr =  function (name, o, ...) {
-         ex <- attr(o, "ex", exact=TRUE)
-         if (!is.null(ex)) {
-           ## Special case for code contained in a function
-           if (inherits(ex, "function")) {
-             ## If source is available, start from there
-             src <- getSource(ex)
-             if (!is.null(src)) {
-               ex <- src
-             } else { ## Use the body of the function
-               ex <- deparse(body(ex))
-             }
-             ## Eliminate leading and trailing code
-             ex <- ex[-c(1, length(ex))]
-             if( length(ex) ){  # avoid error on yet empty example
-                 if(ex[1]=="{")ex <- ex[-1]
-                 ## all the prefixes
-                 ex <- kill.prefix.whitespace(ex)
-             }
-             ## Add an empty line before and after example
-             ex <- c("", ex, "")
-           }
-           list(examples = ex)
-         } else list()
-       },collapse=function(doc,...){
-         L <- lapply(doc,paste,collapse="\n")
-         L$.overwrite <- TRUE
-         L
-       },tag.s3methods=leadingS3generic,
-       internal.links=function(doc, objs, name, ...){
-         sections <- grep(
-           "value|description|details|item",
-           names(doc),
-           value=TRUE)
-         pkg.names <- names(objs)
-         not.this.name <- pkg.names[pkg.names != name]
-         obj.names <- paste(not.this.name, collapse="|")
-         obj.pattern <- paste0(
-           "(?<!{)", #not { before
-           "(",
-           obj.names,
-           ")",
-           "(?!})" #not } after
-         )
-         doc[sections] <- lapply(doc[sections], function(subject){
-           gsub(obj.pattern, "\\\\code{\\\\link{\\1}}", subject, perl=TRUE)
-         })
-         doc$.overwrite <- TRUE
-         doc
-       },
-       external.links=function(doc, ...){
-         sections <- grep(
-           "value|description|details|item",
-           names(doc),
-           value=TRUE)
-         name.pat <- "([a-zA-Z0-9._]+)"
-         obj.pattern <- paste0(
-           "(?<!{)", #not { before
-           name.pat,
-           "::",
-           name.pat,
-           "(?!})" #not } after
-         )
-         doc[sections] <- lapply(doc[sections], function(subject){
-           gsub(obj.pattern, "\\\\code{\\\\link\\[\\1\\]{\\2}}", subject, perl=TRUE)
-         })
-         doc$.overwrite <- TRUE
-         doc
-       })
+forall.parsers <- list(
+  ## Fill in author from DESCRIPTION and titles.
+  author.from.description=function(desc,...){
+    list(author=desc[,"Author"])
+  },
+  ## The format section sometimes causes problems, so erase it.
+  erase.format=function(...){
+    list(format="")
+  },
+  ## Convert the function name to a title.
+  title.from.name=function(name,doc,...){
+    if("title"%in%names(doc))list() else
+                                      list(title=gsub("[._]"," ",name))
+  },
+  ## PhG: here is what I propose for examples code in the 'ex' attribute
+  examples.in.attr =  function (name, o, ...) {
+    ex <- attr(o, "ex", exact=TRUE)
+    if (!is.null(ex)) {
+      ## Special case for code contained in a function
+      if (inherits(ex, "function")) {
+        ## If source is available, start from there
+        src <- getSource(ex)
+        if (!is.null(src)) {
+          ex <- src
+        } else { ## Use the body of the function
+          ex <- deparse(body(ex))
+        }
+        ## Eliminate leading and trailing code
+        ex <- ex[-c(1, length(ex))]
+        if( length(ex) ){  # avoid error on yet empty example
+          if(ex[1]=="{")ex <- ex[-1]
+          ## all the prefixes
+          ex <- kill.prefix.whitespace(ex)
+        }
+        ## Add an empty line before and after example
+        ex <- c("", ex, "")
+      }
+      list(examples = ex)
+    } else list()
+  },
+  collapse=function(doc,...){
+    L <- lapply(doc,paste,collapse="\n")
+    L$.overwrite <- TRUE
+    L
+  },
+  tag.s3methods=leadingS3generic,
+  internal.links=function(doc, objs, name, ...){
+    sections <- grep(
+      "value|description|details|item",
+      names(doc),
+      value=TRUE)
+    pkg.names <- names(objs)
+    not.this.name <- pkg.names[pkg.names != name]
+    obj.names <- paste(not.this.name, collapse="|")
+    obj.pattern <- paste0(
+      "(?<!{)", #not { before
+      "(",
+      obj.names,
+      ")",
+      "(?!})" #not } after
+    )
+    doc[sections] <- lapply(doc[sections], function(subject){
+      gsub(obj.pattern, "\\\\code{\\\\link{\\1}}", subject, perl=TRUE)
+    })
+    doc$.overwrite <- TRUE
+    doc
+  },
+  external.links=function(doc, ...){
+    sections <- grep(
+      "value|description|details|item",
+      names(doc),
+      value=TRUE)
+    name.pat <- "([a-zA-Z0-9._]+)"
+    obj.pattern <- paste0(
+      "(?<!{)", #not { before
+      name.pat,
+      "::",
+      name.pat,
+      "(?!})" #not } after
+    )
+    doc[sections] <- lapply(doc[sections], function(subject){
+      gsub(obj.pattern, "\\\\code{\\\\link\\[\\1\\]{\\2}}", subject, perl=TRUE)
+    })
+    doc$.overwrite <- TRUE
+    doc
+  })
 
 ### List of parser functions that operate on single objects. This list
 ### is useful for testing these functions.
