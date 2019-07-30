@@ -600,12 +600,14 @@ forall.parsers <-
          L$.overwrite <- TRUE
          L
        },tag.s3methods=leadingS3generic,
-       add.links=function(doc, objs, ...){
+       internal.links=function(doc, objs, name, ...){
          sections <- grep(
            "value|description|details|item",
            names(doc),
            value=TRUE)
-         obj.names <- paste(names(objs), collapse="|")
+         pkg.names <- names(objs)
+         not.this.name <- pkg.names[pkg.names != name]
+         obj.names <- paste(not.this.name, collapse="|")
          obj.pattern <- paste0(
            "(?<!{)", #not { before
            "(",
@@ -615,6 +617,25 @@ forall.parsers <-
          )
          doc[sections] <- lapply(doc[sections], function(subject){
            gsub(obj.pattern, "\\\\code{\\\\link{\\1}}", subject, perl=TRUE)
+         })
+         doc$.overwrite <- TRUE
+         doc
+       },
+       external.links=function(doc, ...){
+         sections <- grep(
+           "value|description|details|item",
+           names(doc),
+           value=TRUE)
+         name.pat <- "([a-zA-Z0-9._]+)"
+         obj.pattern <- paste0(
+           "(?<!{)", #not { before
+           name.pat,
+           "::",
+           name.pat,
+           "(?!})" #not } after
+         )
+         doc[sections] <- lapply(doc[sections], function(subject){
+           gsub(obj.pattern, "\\\\code{\\\\link\\[\\1\\]{\\2}}", subject, perl=TRUE)
          })
          doc$.overwrite <- TRUE
          doc
