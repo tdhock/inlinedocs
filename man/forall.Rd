@@ -1,6 +1,6 @@
 \name{forall}
 \alias{forall}
-\title{forall}
+\title{\code{\link{forall}}}
 \description{For each object in the package that satisfies the criterion
 checked by subfun, parse source using FUN and return the resulting
 documentation list.}
@@ -14,7 +14,7 @@ the result will be returned.}
 
 \value{A Parser Function.}
 
-\author{Toby Dylan Hocking <toby@sg.cs.titech.ac.jp> [aut, cre], Keith Ponting [aut], Thomas Wutzler [aut], Philippe Grosjean [aut], Markus Müller [aut], R Core Team [ctb, cph]}
+\author{Toby Dylan Hocking <tdhock5@gmail.com> [aut, cre], Keith Ponting [aut], Thomas Wutzler [aut], Philippe Grosjean [aut], Markus Müller [aut], R Core Team [ctb, cph]}
 
 
 

@@ -1,6 +1,6 @@
 \name{kill.prefix.whitespace}
 \alias{kill.prefix.whitespace}
-\title{kill prefix whitespace}
+\title{\code{\link{kill prefix whitespace}}}
 \description{Figure out what the whitespace preceding the example code is, and
 then delete that from every line.}
 \usage{kill.prefix.whitespace(ex)}
@@ -10,7 +10,7 @@ then delete that from every line.}
 
 \value{Character vector of code lines with preceding whitespace removed.}
 
-\author{Toby Dylan Hocking <toby@sg.cs.titech.ac.jp> [aut, cre], Keith Ponting [aut], Thomas Wutzler [aut], Philippe Grosjean [aut], Markus Müller [aut], R Core Team [ctb, cph]}
+\author{Toby Dylan Hocking <tdhock5@gmail.com> [aut, cre], Keith Ponting [aut], Thomas Wutzler [aut], Philippe Grosjean [aut], Markus Müller [aut], R Core Team [ctb, cph]}
 
 
 

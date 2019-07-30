@@ -26,7 +26,7 @@ are accumulated and inserted in the relevant part of the .Rd
 file.
 
 For \code{value}, \code{title}, \code{description} and function
-arguments, these \emph{append} to any text from "prefix"
+arguments, these \emph{append} to any text from "\code{\link{prefix}}"
 (\code{^### }) comment lines, irrespective of the order in the
 source.
 
@@ -65,9 +65,9 @@ other valid \code{##}\emph{xxx}\code{<<} line terminates
 all open describe blocks.}
 \value{Named list of character strings extracted from comments. For each
 name N we will look for N\{...\} in the Rd file and replace it
-with the string in this list (implemented in modify.Rd.file).}
+with the string in this list (implemented in \code{\link{modify.Rd.file}}).}
 
-\author{Toby Dylan Hocking <toby@sg.cs.titech.ac.jp> [aut, cre], Keith Ponting [aut], Thomas Wutzler [aut], Philippe Grosjean [aut], Markus Müller [aut], R Core Team [ctb, cph]}
+\author{Toby Dylan Hocking <tdhock5@gmail.com> [aut, cre], Keith Ponting [aut], Thomas Wutzler [aut], Philippe Grosjean [aut], Markus Müller [aut], R Core Team [ctb, cph]}
 \note{\code{alias} extras are automatically split at new lines.
 
 \code{keyword} extras are automatically split at white space,

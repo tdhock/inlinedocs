@@ -18,7 +18,7 @@ search for a definition in the variable "parsers" in
 pkgdir/R/.inlinedocs.R, if that file exists. If not, we use the
 list defined in options("inlinedocs.parsers"), if that is
 defined. If not, we use the package global default in the variable
-default.parsers.}
+\code{\link{default.parsers}}.}
   \item{namespace}{A logical indicating whether a NAMESPACE file should be generated
 for this package. If \code{TRUE}, all objects whose name starts
 with a letter, plus all S4 methods and classes are exported.}
@@ -32,7 +32,7 @@ code files, e.g. *.r files.}
 
 
 
-\author{Toby Dylan Hocking <toby@sg.cs.titech.ac.jp> [aut, cre], Keith Ponting [aut], Thomas Wutzler [aut], Philippe Grosjean [aut], Markus Müller [aut], R Core Team [ctb, cph]}
+\author{Toby Dylan Hocking <tdhock5@gmail.com> [aut, cre], Keith Ponting [aut], Thomas Wutzler [aut], Philippe Grosjean [aut], Markus Müller [aut], R Core Team [ctb, cph]}
 
 
 
@@ -48,7 +48,7 @@ testPackagePath <- file.path(system.file(package="inlinedocs"),"silly")
 file.copy(testPackagePath,".",recursive=TRUE)
 
 ## generate documentation .Rd files for this package
-package.skeleton.dx("silly")
+\code{\link{package.skeleton.dx}}("silly")
 
 ## check the package to see if generated documentation passes
 ## without WARNINGs.

@@ -599,8 +599,26 @@ forall.parsers <-
          L <- lapply(doc,paste,collapse="\n")
          L$.overwrite <- TRUE
          L
-       },tag.s3methods=leadingS3generic
-       )
+       },tag.s3methods=leadingS3generic,
+       add.links=function(doc, objs, ...){
+         sections <- grep(
+           "value|description|details|item",
+           names(doc),
+           value=TRUE)
+         obj.names <- paste(names(objs), collapse="|")
+         obj.pattern <- paste0(
+           "(?<!{)", #not { before
+           "(",
+           obj.names,
+           ")",
+           "(?!})" #not } after
+           )
+         L <- lapply(doc, function(subject){
+           gsub(obj.pattern, "\\\\code{\\\\link{\\1}}", subject, perl=TRUE)
+         })
+         L$.overwrite <- TRUE
+         L
+       })
 
 ### List of parser functions that operate on single objects. This list
 ### is useful for testing these functions.

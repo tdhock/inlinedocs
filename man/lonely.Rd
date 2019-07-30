@@ -1,7 +1,7 @@
 \name{lonely}
 \alias{lonely}
 \docType{data}
-\title{lonely}
+\title{\code{\link{lonely}}}
 \description{List of parser functions that operate on single objects. This list
 is useful for testing these functions.}
 \usage{"lonely"}
@@ -22,7 +22,7 @@ is useful for testing these functions.}
          sum=x+y) ##<< their sum
     ##end<<
   }
-  src <- getSource(f)
-  lonely$extract.xxx.chunks(src)
-  lonely$prefixed.lines(src)
+  src <- \code{\link{getSource}}(f)
+  \code{\link{lonely}}$\code{\link{extract.xxx.chunks}}(src)
+  \code{\link{lonely}}$\code{\link{prefix}}ed.lines(src)
 }

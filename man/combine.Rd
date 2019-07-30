@@ -1,7 +1,7 @@
 \name{combine}
 \alias{combine}
-\title{combine}
-\description{combine lists or character strings}
+\title{\code{\link{combine}}}
+\description{\code{\link{combine}} lists or character strings}
 \usage{combine(x, y)}
 \arguments{
   \item{x}{
@@ -12,7 +12,7 @@
 
 
 
-\author{Toby Dylan Hocking <toby@sg.cs.titech.ac.jp> [aut, cre], Keith Ponting [aut], Thomas Wutzler [aut], Philippe Grosjean [aut], Markus Müller [aut], R Core Team [ctb, cph]}
+\author{Toby Dylan Hocking <tdhock5@gmail.com> [aut, cre], Keith Ponting [aut], Thomas Wutzler [aut], Philippe Grosjean [aut], Markus Müller [aut], R Core Team [ctb, cph]}
 
 
 

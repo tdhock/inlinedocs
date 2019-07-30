@@ -1,6 +1,6 @@
 \name{extract.docs.file}
 \alias{extract.docs.file}
-\title{extract docs file}
+\title{\code{\link{extract docs file}}}
 \description{Apply all parsers relevant to extract info from just 1 code file.}
 \usage{extract.docs.file(f, parsers = NULL, ...)}
 \arguments{
@@ -12,12 +12,12 @@ documentation.}
 
 
 
-\author{Toby Dylan Hocking <toby@sg.cs.titech.ac.jp> [aut, cre], Keith Ponting [aut], Thomas Wutzler [aut], Philippe Grosjean [aut], Markus Müller [aut], R Core Team [ctb, cph]}
+\author{Toby Dylan Hocking <tdhock5@gmail.com> [aut, cre], Keith Ponting [aut], Thomas Wutzler [aut], Philippe Grosjean [aut], Markus Müller [aut], R Core Team [ctb, cph]}
 
 
 
 
 \examples{
 f <- system.file("silly","R","silly.R",package="inlinedocs")
-extract.docs.file(f)
+\code{\link{extract.docs.file}}(f)
 }

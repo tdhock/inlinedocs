@@ -1,6 +1,6 @@
 \name{apply.parsers}
 \alias{apply.parsers}
-\title{apply parsers}
+\title{\code{\link{apply parsers}}}
 \description{Parse code to r objs, then run all the parsers and return the
 documentation list.}
 \usage{apply.parsers(code, parsers = default.parsers, verbose = FALSE, 
@@ -14,7 +14,7 @@ documentation list.}
 
 \value{A list of extracted documentation from code.}
 
-\author{Toby Dylan Hocking <toby@sg.cs.titech.ac.jp> [aut, cre], Keith Ponting [aut], Thomas Wutzler [aut], Philippe Grosjean [aut], Markus Müller [aut], R Core Team [ctb, cph]}
+\author{Toby Dylan Hocking <tdhock5@gmail.com> [aut, cre], Keith Ponting [aut], Thomas Wutzler [aut], Philippe Grosjean [aut], Markus Müller [aut], R Core Team [ctb, cph]}
 
 
 

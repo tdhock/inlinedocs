@@ -8,7 +8,7 @@
   \item{env}{environment to search for additional generics}
   \item{\dots}{ignored here}
 }
-\details{This function is one of the default parsers, but exposed as
+\details{This function is one of the \code{\link{default parsers}}, but exposed as
 possibly of more general interest. Given a function name of the form
 x.y.z it looks for the generic function x applying to objects of class
 y.z and also for generic function x.y applying to objects of class z.
@@ -24,7 +24,7 @@ of class y.z}
 
 If no matching generic functions are found, returns an empty list.}
 
-\author{Toby Dylan Hocking <toby@sg.cs.titech.ac.jp> [aut, cre], Keith Ponting [aut], Thomas Wutzler [aut], Philippe Grosjean [aut], Markus Müller [aut], R Core Team [ctb, cph]}
+\author{Toby Dylan Hocking <tdhock5@gmail.com> [aut, cre], Keith Ponting [aut], Thomas Wutzler [aut], Philippe Grosjean [aut], Markus Müller [aut], R Core Team [ctb, cph]}
 
 
 

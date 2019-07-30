@@ -2,7 +2,7 @@
 \alias{extract.file.parse}
 \title{File content analysis}
 \description{Using the base \code{parse} function, analyse the file to link
-preceding "prefix" comments to each active chunk. Those comments form
+preceding "\code{\link{prefix}}" comments to each active chunk. Those comments form
 the default description for that chunk. The analysis also looks for
 S4 class "setClass" calls and R.oo setConstructorS3 and R.methodsS3::setMethodS3
 calls in order to link the documentation of those properly.}
@@ -14,7 +14,7 @@ for class definitions.}
 }
 \details{If the definition chunk does not contain a
 description, any immediately preceding sequence consecutive
-"prefix" lines will be used instead.
+"\code{\link{prefix}}" lines will be used instead.
 
 Class and method definitions can take several forms,
 determined by expression type: \describe{
@@ -35,7 +35,7 @@ first defining instances, subsequent definitions of that generic
 also link back to the first defining instance.}
 \value{Returns an invisible list of .DocLink objects.}
 
-\author{Toby Dylan Hocking <toby@sg.cs.titech.ac.jp> [aut, cre], Keith Ponting [aut], Thomas Wutzler [aut], Philippe Grosjean [aut], Markus Müller [aut], R Core Team [ctb, cph]}
+\author{Toby Dylan Hocking <tdhock5@gmail.com> [aut, cre], Keith Ponting [aut], Thomas Wutzler [aut], Philippe Grosjean [aut], Markus Müller [aut], R Core Team [ctb, cph]}
 
 
 
