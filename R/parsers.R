@@ -547,6 +547,26 @@ forfun.parsers <- list(
       list(examples=readLines(tfile))
     else list()
   },
+  arguments.code=function(doc, o, ...){
+    arg.names <- gsub(".", "\\.", names(formals(o)), fixed=TRUE)
+    sections <- grep(
+      "value|description|details|item",
+      names(doc),
+      value=TRUE)
+    obj.names <- paste(arg.names, collapse="|")
+    obj.pattern <- paste0(
+      "(?<!{)", #not { before
+      "(",
+      obj.names,
+      ")",
+      "(?!})" #not } after
+    )
+    doc[sections] <- lapply(doc[sections], function(subject){
+      gsub(obj.pattern, "\\\\code{\\1}", subject, perl=TRUE)
+    })
+    doc$.overwrite <- TRUE
+    doc
+  },
   definition.from.source=function(doc,src,...){
     def <- doc$definition
     is.empty <- function(x)is.null(x)||x==""
