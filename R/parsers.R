@@ -34,14 +34,14 @@ do.not.generate <- structure(function
   Rd.files <- c("SillyTest-class.Rd","silly.example.Rd")
   Rd.paths <- file.path(man.dir,Rd.files)
   stopifnot(all(file.exists(Rd.paths)))
-  
+
   ## Save the modification times of the Rd files
   old <- file.info(Rd.paths)$mtime
 
   ## make sure there is at least 2 seconds elapsed, which is the
   ## resolution for recording times on windows file systems.
-  Sys.sleep(4) 
-  
+  Sys.sleep(4)
+
   ## However, it will NOT generate Rd for files specified in
   ## do.not.generate, if they DO exist already.
   package.skeleton.dx("silly",parsers)
@@ -547,7 +547,8 @@ forfun.parsers <- list(
       list(examples=readLines(tfile))
     else list()
   },
-  arguments.code=function(doc, o, ...){
+  arguments.code=function(doc, o, name, ...){
+    if(!is.function(o))print(name)#TODO why is this being called?
     arg.names <- gsub(".", "\\.", names(formals(o)), fixed=TRUE)
     sections <- grep(
       "value|description|details|item",
@@ -889,7 +890,7 @@ extract.file.parse <- function # File content analysis
         ## TDH 9 April 2012 Do NOT add \\link in generic.desc below,
         ## since it causes problems on R CMD check.
         ##* checking Rd cross-references ... WARNING
-        ##Error in find.package(package, lib.loc) : 
+        ##Error in find.package(package, lib.loc) :
         ##  there is no package called ‘MASS’
         ##Calls: <Anonymous> -> lapply -> FUN -> find.package
 
