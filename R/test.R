@@ -8,9 +8,11 @@ test.file <- function
 ### matter, and thus this should be a good robust unit test.
 (f,
 ### File name of R code file with inlinedocs to parse and check.
- verbose=TRUE
+  CRAN.checks=TRUE,
+### try to make a package and run CRAN checks?
+  verbose=TRUE
 ### Show output?
- ){
+){
   ##seealso<< \code{\link{save.test.result}}
   e <- new.env()
   suppressWarnings(sys.source(f,e))
@@ -58,8 +60,9 @@ test.file <- function
   ## to the check directory and read as a .Rprofile, as done in
   ## tools:::.runPackageTests ... is this a bug in R? Anyway for now
   ## let's just not run the R CMD check.
-  if(!is.null(e$.dontcheck) || !interactive())return()
-  make.package.and.check(f,parsers,verbose)
+  if(CRAN.checks && is.null(e$.dontcheck)){
+    make.package.and.check(f,parsers,verbose)
+  }
   if(verbose)cat("\n")
 }
 
