@@ -549,19 +549,21 @@ forfun.parsers <- list(
   },
   arguments.code=function(doc, o, name, ...){
     if(!is.function(o))print(name)#TODO why is this being called?
-    arg.names <- gsub(".", "\\.", names(formals(o)), fixed=TRUE)
+    arg.names <- names(formals(o))
+    if(length(arg.names)==0)return(list())
+    arg.pattern.vec <- gsub(".", "\\.", arg.names, fixed=TRUE)
+    arg.pattern <- paste(arg.pattern.vec, collapse="|")
+    obj.pattern <- paste0(
+      "(?<!{)", #not { before
+      "(",
+      arg.pattern,
+      ")",
+      "(?!})" #not } after
+    )
     sections <- grep(
       "value|description|details|item",
       names(doc),
       value=TRUE)
-    obj.names <- paste(arg.names, collapse="|")
-    obj.pattern <- paste0(
-      "(?<!{)", #not { before
-      "(",
-      obj.names,
-      ")",
-      "(?!})" #not } after
-    )
     doc[sections] <- lapply(doc[sections], function(subject){
       gsub(obj.pattern, "\\\\code{\\1}", subject, perl=TRUE)
     })
