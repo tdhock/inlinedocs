@@ -8,7 +8,7 @@ inlinedocs), writes docs to pkgdir/man/*.Rd files, possibly
 overwriting the previous files there.}
 \usage{package.skeleton.dx(pkgdir = "..", parsers = NULL, 
     namespace = FALSE, excludePattern = "[.][rsqS]$", 
-    ...)}
+    verbose = FALSE)}
 \arguments{
   \item{pkgdir}{Package directory where the DESCRIPTION file lives. Your code
 should be in pkgdir/R.}
@@ -27,7 +27,7 @@ processed e.g. because inlinedocs can not handle them yet (like
 generic function definitions). Default value means to only process
 inlinedocs in .R files. Set excludePattern=NULL to process all
 code files, e.g. *.r files.}
-  \item{\dots}{Parameters to pass to Parser Functions.}
+  \item{verbose}{show messages about parser functions used?}
 }
 
 

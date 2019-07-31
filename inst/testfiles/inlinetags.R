@@ -336,7 +336,7 @@ extract.docs.fun <- function # Extract documentation from a function
   extract.docs.fun = list(
     format="",
     title = "Extract documentation from a function", description = "Given a function, return a list describing inline documentation in\nthe source of that function (relies on source attr).",
-    `item{fun}` = "The function to examine.", value = "Named list of character strings extracted from comments. For each\nname N we will look for N\\{...\\} in the Rd file and replace it\nwith the string in this list (implemented in modify.Rd.file).",
+    `item{fun}` = "The function to examine.", value = "Named list of character strings extracted from comments. For each\nname N we will look for N\\{...\\} in the Rd file and replace it\nwith the string in this list (implemented in \\code{\\link{modify.Rd.file}}).",
     details = "For simple functions/arguments, the argument may also be documented by\nappending ##<< comments on the same line as the argument. For those who\nwish to become confused, any following ### comment lines will be appended.\n\nAdditionally, contiguous sections of ## comment lines beginning with\nxxx<< (where xxx is one of the \"other\" fields: alias, details, keyword,\nreferences, author, note, seealso or value) are accumulated and inserted in\nthe relevant part of the .Rd file.\n\nIn the case of value, the extra information is appended to that from\nany final ### comment lines.\n\nEach separate extra section appears as a new paragraph\nexcept that empty sections (no matter how many lines) are ignored.",
     note = "Alias extras are automatically split at new lines.\n\nKeyword extras are auto-split at white space.",
     keyword = "documentation}\n\\keyword{utilities"),

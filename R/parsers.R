@@ -536,11 +536,11 @@ leadingS3generic <- function # check whether function name is an S3 generic
 ### Regex for a whole word to code/link tags.
 whole.word <- function(...){
   paste0(
-    "(?<=\\s|^)",#lookbehind for space or line start
+    "(?<=\\s|^|\\()",#lookbehind for space, line start, or open paren
     ...,
     "(?=",#lookahead
     "[.,;:?!]?",#maybe a punctuation mark.
-    "(?:\\s|$)",#whitespace or end of line
+    "(?:\\s|$|\\))",#whitespace, end of line, or close paren
     ")"#end lookahead
   )
 }
