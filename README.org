@@ -9,9 +9,27 @@ not use it). To install the up-to-date inlinedocs from this GitHub
 repository,
 
 #+BEGIN_SRC R
-install.packages("devtools")
+if(!requireNamespace("devtools"))install.packages("devtools")
 devtools::install_github("tdhock/inlinedocs")
 #+END_SRC
 
-** Usage
+** Write documentation in comments
 
+See [[http://inlinedocs.r-forge.r-project.org/][the R-Forge page]] for a summary of the kinds of comments that are
+recognized as documentation by the default inlinedocs Parser Functions.
+
+** Convert comments to documentation
+
+Read comments in =pkg/R/*.R= files, then generate =pkg/man/*.Rd= files:
+
+#+BEGIN_SRC R
+inlinedocs::package.skeleton.dx("path/to/your/pkg")
+#+END_SRC
+
+** Write your own Parser Function to extend inlinedocs
+
+Don't like the default syntax? Want to add a new feature? You can
+write your own Parser Functions that take your code/comments from *.R
+files as input, and return documentation as output. Please read [[https://www.jstatsoft.org/article/view/v054i06][the
+JSS paper]] for an overview of how this works, and see
+[[file:inst/testfiles/alternate.R]] for an example.
