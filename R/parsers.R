@@ -3,7 +3,7 @@ do.not.generate <- structure(function
 ### should not be generated.
 (...
 ### Character strings indicating Rd files without the .Rd suffix.
- ){
+){
   filenames <- c(...)
   function(docs,...){
     for(fn in filenames){
@@ -15,6 +15,7 @@ do.not.generate <- structure(function
 ### A Parser Function that will delete items from the outer
 ### Documentation List.
 },ex=function(){
+
   silly.pkg <- system.file("silly",package="inlinedocs")
   owd <- setwd(tempdir())
   file.copy(silly.pkg,".",recursive=TRUE)
@@ -54,6 +55,7 @@ do.not.generate <- structure(function
 
   unlink("silly",recursive=TRUE)
   setwd(owd)
+
 })
 
 ### combine NULL objects.
@@ -133,14 +135,16 @@ forall <- function
 ### Function to select subsets of elements of the package, such as
 ### is.function. subfun(x)==TRUE means FUN will be applied to x and
 ### the result will be returned.
- ){
-  FUN <- FUN
+){
+  force(FUN)
   f <- function(objs,docs,...){
     if(length(objs)==0)return(list())
     objs <- objs[sapply(objs,subfun)]
     L <- list()
     on.exit(cat(sprintf("Parser Function failed on %s\n",N)))
-    for(N in union(names(docs),names(objs))){
+    ##name.vec <- union(names(docs),names(objs))
+    name.vec <- names(objs)
+    for(N in name.vec){
       o <- objs[[N]]
       L[[N]] <- FUN(src=getSource(o),
                     name=N,objs=objs,o=o,docs=docs,doc=docs[[N]],...)
@@ -199,8 +203,12 @@ prefixed.lines <- structure(function(src,...){
   code <- gsub("#.*","",src)
   f <- function(ch)cumsum(nchar(gsub(sprintf("[^%s]",ch),"",code)))
   parens <- f("(")-f(")")
-  body.begin <- which(diff(parens)<0 & parens[-1]==0)+2
-  if(length(body.begin)==0)body.begin <- 1 ## rare cases
+  parens.closed <- which(diff(parens)<0 & parens[-1]==0)+2
+  body.begin <- if(length(parens.closed)==0){
+    1 ## rare cases
+  }else{
+    parens.closed[[1]]
+  }
   is.arg <- function(){
     gres <- grep("^\\s*#",src[start-1],perl=TRUE)
     0 == length(gres) && start<=body.begin
@@ -227,6 +235,7 @@ prefixed.lines <- structure(function(src,...){
   }
   res
 },ex=function(){
+
 test <- function
 ### the description
 (x,
@@ -240,6 +249,7 @@ test <- function
 src <- getSource(test)
 prefixed.lines(src)
 extract.xxx.chunks(src)
+
 })
 
 extract.xxx.chunks <- function # Extract documentation from a function
@@ -523,6 +533,18 @@ leadingS3generic <- function # check whether function name is an S3 generic
   list()
 }
 
+### Regex for a whole word to code/link tags.
+whole.word <- function(...){
+  paste0(
+    "(?<=\\s|^)",#lookbehind for space or line start
+    ...,
+    "(?=",#lookahead
+    "[.,;:?!]?",#maybe a punctuation mark.
+    "(?:\\s|$)",#whitespace or end of line
+    ")"#end lookahead
+  )
+}
+
 ### Parsers for each function that are constructed automatically. This
 ### is a named list, and each element is a parser function for an
 ### individual object.
@@ -553,12 +575,10 @@ forfun.parsers <- list(
     if(length(arg.names)==0)return(list())
     arg.pattern.vec <- gsub(".", "\\.", arg.names, fixed=TRUE)
     arg.pattern <- paste(arg.pattern.vec, collapse="|")
-    obj.pattern <- paste0(
-      "(?<!{)", #not { before
+    obj.pattern <- whole.word(
       "(",
       arg.pattern,
-      ")",
-      "(?!})" #not } after
+      ")"
     )
     sections <- grep(
       "value|description|details|item",
@@ -571,9 +591,10 @@ forfun.parsers <- list(
     doc
   },
   definition.from.source=function(doc,src,...){
-    def <- doc$definition
-    is.empty <- function(x)is.null(x)||x==""
-    if(is.empty(def) && !is.empty(src))
+    is.empty <- function(x){
+      is.null(x) || identical(x, "")
+    }
+    if(is.empty(doc$definition) && !is.empty(src))
       list(definition=src)
     else list()
   })
@@ -632,13 +653,12 @@ forall.parsers <- list(
       value=TRUE)
     pkg.names <- names(objs)
     not.this.name <- pkg.names[pkg.names != name]
+    if(length(not.this.name)==0)return(list())
     obj.names <- paste(not.this.name, collapse="|")
-    obj.pattern <- paste0(
-      "(?<!{)", #not { before
+    obj.pattern <- whole.word(
       "(",
-      obj.names,
-      ")",
-      "(?!})" #not } after
+      gsub(".", "\\.", obj.names, fixed=TRUE),
+      ")"
     )
     doc[sections] <- lapply(doc[sections], function(subject){
       gsub(obj.pattern, "\\\\code{\\\\link{\\1}}", subject, perl=TRUE)
@@ -652,12 +672,10 @@ forall.parsers <- list(
       names(doc),
       value=TRUE)
     name.pat <- "([a-zA-Z0-9._]+)"
-    obj.pattern <- paste0(
-      "(?<!{)", #not { before
+    obj.pattern <- whole.word(
       name.pat,
       "::",
-      name.pat,
-      "(?!})" #not } after
+      name.pat
     )
     doc[sections] <- lapply(doc[sections], function(subject){
       gsub(obj.pattern, "\\\\code{\\\\link\\[\\1\\]{\\2}}", subject, perl=TRUE)
@@ -669,6 +687,7 @@ forall.parsers <- list(
 ### List of parser functions that operate on single objects. This list
 ### is useful for testing these functions.
 lonely <- structure(c(forall.parsers,forfun.parsers),ex=function(){
+
   f <- function # title
 ### description
   (x, ##<< arg x
@@ -684,6 +703,7 @@ lonely <- structure(c(forall.parsers,forfun.parsers),ex=function(){
   src <- getSource(f)
   lonely$extract.xxx.chunks(src)
   lonely$prefixed.lines(src)
+
 })
 
 extra.code.docs <- function # Extract documentation from code chunks
@@ -711,7 +731,9 @@ extra.code.docs <- function # Extract documentation from code chunks
         if ( !is.na(parsed[[on]]@code[1]) ){ # no code given for generics
           doc$definition <- paste(parsed[[on]]@code)
         }
-        if(!"description"%in%names(doc) && !is.na(parsed[[on]]@description) ){
+        desc.in.doc <- "description"%in%names(doc)
+        desc.missing <- identical(parsed[[on]]@description, NA_character_)
+        if(!desc.in.doc && !desc.missing){
           doc$description <- parsed[[on]]@description
         }
         ## if ( "R.methodsS3::setMethodS3" == parsed[[on]]@created ){
@@ -798,11 +820,25 @@ extra.code.docs <- function # Extract documentation from code chunks
 }
 
 ### List of parsers to use by default with package.skeleton.dx.
-default.parsers <-
-  c(extra.code.docs=extra.code.docs, ## TODO: cleanup!
-    sapply(forfun.parsers,forfun),
-    sapply(forall.parsers,forall)
-    )
+default.parsers <- c(
+  extra.code.docs=extra.code.docs,
+  sapply(forfun.parsers,forfun),
+  sapply(forall.parsers,forall)
+)
+
+### List of classic parsers which were default before 2018.
+classic.parsers <- default.parsers[c(
+  "extra.code.docs", "prefixed.lines", "extract.xxx.chunks",
+  "title.from.firstline", "examples.from.testfile",
+  "definition.from.source", "author.from.description", "erase.format",
+  "title.from.name", "examples.in.attr", "collapse", "tag.s3methods")]
+
+### List of classic parsers which were default before 2018.
+test.parsers <- default.parsers[c(
+  "extra.code.docs", "prefixed.lines", "extract.xxx.chunks",
+  "title.from.firstline", "examples.from.testfile",
+  "definition.from.source", "erase.format",
+  "title.from.name", "examples.in.attr", "collapse", "tag.s3methods")]
 
 setClass("DocLink", # Link documentation among related functions
 ### The \code{.DocLink} class provides the basis for hooking together
@@ -1066,11 +1102,13 @@ extract.docs.file <- structure(function
 ### documentation.
  ...
 ### Other arguments to pass to Parser Functions.
- ){
+){
   if(is.null(parsers))parsers <- nondesc.parsers
   apply.parsers(readLines(f),parsers,verbose=FALSE,...)
 },ex=function(){
+
   f <- system.file("silly","R","silly.R",package="inlinedocs")
   extract.docs.file(f)
+
 })
 

@@ -19,7 +19,8 @@ etc/default-function.R
 
 2019.7.30
 
-add.links parser function.
+New default parser functions: internal.links, external.links,
+arguments.code.
 
 2015.05.15
 

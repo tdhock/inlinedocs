@@ -4,3 +4,5 @@ exportPattern("^[[:alpha:]]+")
 
 S3method("combine", "character")
 S3method("combine", "list")
+S3method("combine", "NULL")
+S3method("print", "allfun")

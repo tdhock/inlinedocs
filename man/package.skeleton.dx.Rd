@@ -32,12 +32,13 @@ code files, e.g. *.r files.}
 
 
 
-\author{Toby Dylan Hocking <tdhock5@gmail.com> [aut, cre], Keith Ponting [aut], Thomas Wutzler [aut], Philippe Grosjean [aut], Markus Müller [aut], R Core Team [ctb, cph]}
+\author{Toby Dylan Hocking <toby.hocking@r-project.org> [aut, cre], Keith Ponting [aut], Thomas Wutzler [aut], Philippe Grosjean [aut], Markus MÃ¼ller [aut], R Core Team [ctb, cph]}
 
 
 
 
 \examples{
+
 owd <- setwd(tempdir())
 
 ## get the path to the silly example package that is provided with
@@ -48,7 +49,7 @@ testPackagePath <- file.path(system.file(package="inlinedocs"),"silly")
 file.copy(testPackagePath,".",recursive=TRUE)
 
 ## generate documentation .Rd files for this package
-\code{\link{package.skeleton.dx}}("silly")
+package.skeleton.dx("silly")
 
 ## check the package to see if generated documentation passes
 ## without WARNINGs.
@@ -65,8 +66,9 @@ if(interactive()){
     ## https://bugs.r-project.org/bugzilla3/show_bug.cgi?id=14875
     ##stop("WARNING encountered in package check!")
   }
-}  
+}
 ## cleanup: remove the test package from current workspace again
 unlink("silly",recursive=TRUE)
 setwd(owd)
+
 }

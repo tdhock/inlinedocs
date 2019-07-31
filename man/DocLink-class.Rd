@@ -23,7 +23,7 @@ the parent class.}
 No methods defined with class "DocLink" in the signature.
 }
 
-\author{Toby Dylan Hocking <tdhock5@gmail.com> [aut, cre], Keith Ponting [aut], Thomas Wutzler [aut], Philippe Grosjean [aut], Markus Müller [aut], R Core Team [ctb, cph]}
+
 
 
 

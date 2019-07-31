@@ -1,7 +1,7 @@
 \name{prefix}
 \alias{prefix}
 \docType{data}
-\title{\code{\link{prefix}}}
+\title{prefix}
 \description{Prefix for code comments used with grep and gsub.}
 \usage{"prefix"}
 

@@ -1,6 +1,6 @@
 \name{make.package.and.check}
 \alias{make.package.and.check}
-\title{\code{\link{make package and check}}}
+\title{make package and check}
 \description{Assemble some R code into a package and process it using R CMD
 check, stopping with an error if the check resulted in any errors
 or warnings.}
@@ -14,7 +14,7 @@ or warnings.}
 
 
 
-\author{Toby Dylan Hocking <tdhock5@gmail.com> [aut, cre], Keith Ponting [aut], Thomas Wutzler [aut], Philippe Grosjean [aut], Markus Müller [aut], R Core Team [ctb, cph]}
+\author{Toby Dylan Hocking <toby.hocking@r-project.org> [aut, cre], Keith Ponting [aut], Thomas Wutzler [aut], Philippe Grosjean [aut], Markus MÃ¼ller [aut], R Core Team [ctb, cph]}
 
 
 

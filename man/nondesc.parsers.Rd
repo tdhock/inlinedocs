@@ -1,7 +1,7 @@
 \name{nondesc.parsers}
 \alias{nondesc.parsers}
 \docType{data}
-\title{\code{\link{nondesc parsers}}}
+\title{nondesc parsers}
 \description{Parsers that operate only on R code, independently of the
 description file.}
 \usage{"nondesc.parsers"}

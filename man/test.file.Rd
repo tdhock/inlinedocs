@@ -1,6 +1,6 @@
 \name{test.file}
 \alias{test.file}
-\title{\code{\link{test file}}}
+\title{test file}
 \description{Check an R code file with inlinedocs to see if the
 \code{\link{extract.docs.file}} parser accurately extracts all the code inside!
 The code file should contain a variable .result which is the
@@ -16,7 +16,7 @@ matter, and thus this should be a good robust unit test.}
 
 
 
-\author{Toby Dylan Hocking <tdhock5@gmail.com> [aut, cre], Keith Ponting [aut], Thomas Wutzler [aut], Philippe Grosjean [aut], Markus Müller [aut], R Core Team [ctb, cph]}
+\author{Toby Dylan Hocking <toby.hocking@r-project.org> [aut, cre], Keith Ponting [aut], Thomas Wutzler [aut], Philippe Grosjean [aut], Markus MÃ¼ller [aut], R Core Team [ctb, cph]}
 
 
 

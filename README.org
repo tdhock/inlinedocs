@@ -2,12 +2,16 @@
 
 [[https://travis-ci.org/tdhock/inlinedocs][https://travis-ci.org/tdhock/inlinedocs.svg]]
 
-As of 3 June 2014, inlinedocs from R-Forge and CRAN are deprecated
-(please do not use them). To install the up-to-date inlinedocs from
-this GitHub repository,
+** Installation
+
+As of 3 June 2014, inlinedocs from R-Forge is deprecated (please do
+not use it). To install the up-to-date inlinedocs from this GitHub
+repository,
 
 #+BEGIN_SRC R
 install.packages("devtools")
 devtools::install_github("tdhock/inlinedocs")
 #+END_SRC
+
+** Usage
 

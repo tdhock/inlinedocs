@@ -1,7 +1,7 @@
 \name{extract.docs.file}
 \alias{extract.docs.file}
-\title{\code{\link{extract docs file}}}
-\description{Apply all parsers relevant to extract info from just 1 code file.}
+\title{extract docs file}
+\description{Apply all \code{parsers} relevant to extract info from just 1 code file.}
 \usage{extract.docs.file(f, parsers = NULL, ...)}
 \arguments{
   \item{f}{File name of R code to read and parse.}
@@ -12,12 +12,14 @@ documentation.}
 
 
 
-\author{Toby Dylan Hocking <tdhock5@gmail.com> [aut, cre], Keith Ponting [aut], Thomas Wutzler [aut], Philippe Grosjean [aut], Markus Müller [aut], R Core Team [ctb, cph]}
+\author{Toby Dylan Hocking <toby.hocking@r-project.org> [aut, cre], Keith Ponting [aut], Thomas Wutzler [aut], Philippe Grosjean [aut], Markus MÃ¼ller [aut], R Core Team [ctb, cph]}
 
 
 
 
 \examples{
+
 f <- system.file("silly","R","silly.R",package="inlinedocs")
-\code{\link{extract.docs.file}}(f)
+extract.docs.file(f)
+
 }

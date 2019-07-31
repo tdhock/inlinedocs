@@ -1,6 +1,6 @@
 \name{prefixed.lines}
 \alias{prefixed.lines}
-\title{\code{\link{prefix}}ed lines}
+\title{prefixed lines}
 \description{The primary mechanism of inline documentation is via consecutive
 groups of lines matching the specified \code{\link{prefix}} regular expression
 "\code{^### }" (i.e. lines beginning with "\code{### }") are
@@ -20,12 +20,13 @@ described below.}
 
 
 
-\author{Toby Dylan Hocking <tdhock5@gmail.com> [aut, cre], Keith Ponting [aut], Thomas Wutzler [aut], Philippe Grosjean [aut], Markus Müller [aut], R Core Team [ctb, cph]}
+\author{Toby Dylan Hocking <toby.hocking@r-project.org> [aut, cre], Keith Ponting [aut], Thomas Wutzler [aut], Philippe Grosjean [aut], Markus MÃ¼ller [aut], R Core Team [ctb, cph]}
 
 
 
 
 \examples{
+
 test <- function
 ### the description
 (x,
@@ -36,7 +37,8 @@ test <- function
 ### the return value
 ##seealso<< foobar
 }
-src <- \code{\link{getSource}}(test)
-\code{\link{prefix}}ed.lines(src)
-\code{\link{extract.xxx.chunks}}(src)
+src <- getSource(test)
+prefixed.lines(src)
+extract.xxx.chunks(src)
+
 }

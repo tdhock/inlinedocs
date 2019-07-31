@@ -1,6 +1,6 @@
 \name{getSource}
 \alias{getSource}
-\title{\code{\link{getSource}}}
+\title{getSource}
 \description{Extract a function's source code.}
 \usage{getSource(fun.obj)}
 \arguments{
@@ -9,7 +9,7 @@
 
 \value{Source code lines as a character vector.}
 
-\author{Toby Dylan Hocking <tdhock5@gmail.com> [aut, cre], Keith Ponting [aut], Thomas Wutzler [aut], Philippe Grosjean [aut], Markus Müller [aut], R Core Team [ctb, cph]}
+\author{Toby Dylan Hocking <toby.hocking@r-project.org> [aut, cre], Keith Ponting [aut], Thomas Wutzler [aut], Philippe Grosjean [aut], Markus MÃ¼ller [aut], R Core Team [ctb, cph]}
 
 
 

@@ -27,8 +27,10 @@ test.file <- function
       .res <- .fun[[N]]
       res <- fun[[N]]
       if(is.null(res) || is.na(res) || is.na(.res) || .res!=res){
-        cat("\n-----\n",res,"\n-----\nin ",FUN,
-            "$",N,", expected:\n-----\n",.res,"\n-----\n")
+        cat(
+          "\n-----\n",res,"\n-----\nin ",FUN,
+          "$",N,", expected:\n-----\n",.res,"\n-----\n",
+          sep="")
         stop("docs mismatch in ",f)
       }
     }
@@ -36,9 +38,10 @@ test.file <- function
     additional <- !names(fun)%in%names(.fun)
     show <- fun[additional] ##ignore NULL extracted items
     show <- show[!sapply(show,is.null)]
-    if(length(show)){
+    not.def <- show[names(show) != "definition"]
+    if(length(not.def)){
       cat("\n")
-      print(show)
+      print(not.def)
       stop("extracted some unexpected docs!")
     }
   }
@@ -79,7 +82,9 @@ make.package.and.check <- function
   sillydir <- system.file("silly",package="inlinedocs")
   tocopy <- file.path(sillydir,c("DESCRIPTION","NAMESPACE"))
   file.copy(tocopy,pkgdir)
-  file.copy(f,rdir)
+  f.lines.in <- readLines(f)
+  f.lines.out <- grep("^[.]parsers", f.lines.in, invert=TRUE, value=TRUE)
+  writeLines(f.lines.out, file.path(rdir, "code.R"))
   package.skeleton.dx(pkgdir,parsers)
   cmd <- sprintf("%s CMD check --as-cran %s",
                  file.path(R.home("bin"), "R"),
@@ -87,10 +92,17 @@ make.package.and.check <- function
   if(verbose)cat(cmd,"\n")
   checkLines <- system(cmd,intern=TRUE)
   all.warnLines <- grep("WARNING|ERROR|NOTE",checkLines,value=TRUE)
-  ignore.lines <-
-    c("Status",
-      "exercises",
-      "incoming feasibility")
+  ignore.lines <- c( # false positives.
+    ##Status: 1 WARNING, 2 NOTEs
+    "Status",
+    ##* checking R code for possible problems ... NOTE
+    "possible problems",
+    ##* checking for code which exercises the package ... WARNING
+    "exercises",
+    ##* checking DESCRIPTION meta-information ... NOTE
+    "meta-information",
+    ##* checking CRAN incoming feasibility ... NOTE
+    "incoming feasibility")
   ignore.regex <- paste(ignore.lines, collapse="|")
   badLines <- grep(ignore.regex, all.warnLines, value=TRUE, invert=TRUE)
   if(length(badLines)>0){
