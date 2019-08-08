@@ -10,7 +10,7 @@ test.file <- function
 ### File name of R code file with inlinedocs to parse and check.
   CRAN.checks=TRUE,
 ### try to make a package and run CRAN checks?
-  verbose=TRUE
+  verbose=FALSE
 ### Show output?
 ){
   ##seealso<< \code{\link{save.test.result}}
@@ -19,9 +19,8 @@ test.file <- function
   ## these are the items to check for, in no particular order
   .result <- e$.result
   parsers <- e$.parsers
-  result <- extract.docs.file(f,parsers)
+  result <- extract.docs.file(f, parsers, verbose=verbose)
   for(FUN in names(.result)){
-    if(verbose)cat(FUN,"")
     fun <- result[[FUN]]
     .fun <- .result[[FUN]]
     ## first check to make sure all the stored items are there

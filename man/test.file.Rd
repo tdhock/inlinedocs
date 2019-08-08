@@ -8,7 +8,7 @@ documentation list that you should get when you apply
 \code{\link{extract.docs.file}} to the file. We check for identity of elements
 of elements of the list, so the order of elements should not
 matter, and thus this should be a good robust unit test.}
-\usage{test.file(f, CRAN.checks = TRUE, verbose = TRUE)}
+\usage{test.file(f, CRAN.checks = TRUE, verbose = FALSE)}
 \arguments{
   \item{f}{File name of R code file with inlinedocs to parse and check.}
   \item{CRAN.checks}{try to make a package and run CRAN checks?}
