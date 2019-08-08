@@ -671,7 +671,7 @@ forall.parsers <- list(
       "value|description|details|item",
       names(doc),
       value=TRUE)
-    name.pat <- "([a-zA-Z0-9._]+)"
+    name.pat <- "([a-zA-Z0-9._]+?)"
     obj.pattern <- whole.word(
       name.pat,
       "::",
@@ -1076,9 +1076,9 @@ apply.parsers <- function
       if(names(docs[[i]])[j]!=".s3method")
       docs[[i]][[j]] <- paste(docs[[i]][[j]],collapse="\n")
     }
- }
+  }
   if(verbose)cat("\n")
-  return(docs)
+  docs
 ### A list of extracted documentation from code.
 }
 
@@ -1104,7 +1104,7 @@ extract.docs.file <- structure(function
 ### Other arguments to pass to Parser Functions.
 ){
   if(is.null(parsers))parsers <- nondesc.parsers
-  apply.parsers(readLines(f),parsers,verbose=FALSE,...)
+  apply.parsers(readLines(f), parsers, ...)
 },ex=function(){
 
   f <- system.file("silly","R","silly.R",package="inlinedocs")
