@@ -58,7 +58,7 @@ google <- function(src,...){
   }
   lapply(docs,function(x)gsub("\\s*$","",paste(x,collapse="\n")))
 }
-.parsers <- list(google=forfun(google))
+.parsers <- list(google=inlinedocs::forfun(google))
 
 #src <- getSource(CalculateSampleCovariance)
 #google(src)

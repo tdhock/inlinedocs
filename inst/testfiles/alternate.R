@@ -9,7 +9,7 @@ simple <- function(src,...){#title a simple Parser Function
   docs[tags!=""]#value all the tags with a single pound sign
 }
 
-.parsers <- list(simple=forfun(simple))
+.parsers <- list(simple=inlinedocs::forfun(simple))
 
 testfun <- function(x,y,z){#item{x} the first arg
   a <- (x+y)*z # just a regular comment
