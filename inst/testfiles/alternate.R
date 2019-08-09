@@ -17,10 +17,13 @@ testfun <- function(x,y,z){#item{x} the first arg
   #description a useless formula
 }
 
-.result <- list(testfun=list(`item{x}`="the first arg",
-                  value="the sum of the first two times the third",
-                  description="a useless formula"),
-                simple=list(title="a simple Parser Function",
-                  value="all the tags with a single pound sign"))
+.result <- list(
+  testfun=list(
+    `item{x}`="the first arg",
+    value="the sum of the first two times the third",
+    description="a useless formula"),
+  simple=list(
+    title="a simple Parser Function",
+    value="all the tags with a single pound sign"))
 
 .dontcheck <- TRUE # because of use of forfun here
