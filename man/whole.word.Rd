@@ -1,10 +1,10 @@
-\name{fixPackageFileNames}
-\alias{fixPackageFileNames}
-\title{fixPackageFileNames}
-\description{Copied from R-3.0.1, to support fixPackageFileNames.}
-\usage{fixPackageFileNames(list)}
+\name{whole.word}
+\alias{whole.word}
+\title{whole word}
+\description{Regex for a whole word to code/link tags.}
+\usage{whole.word(...)}
 \arguments{
-  \item{list}{
+  \item{\dots}{
 }
 }
 

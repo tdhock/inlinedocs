@@ -8,18 +8,19 @@ test.file <- function
 ### matter, and thus this should be a good robust unit test.
 (f,
 ### File name of R code file with inlinedocs to parse and check.
- verbose=TRUE
+  CRAN.checks=TRUE,
+### try to make a package and run CRAN checks?
+  verbose=FALSE
 ### Show output?
- ){
+){
   ##seealso<< \code{\link{save.test.result}}
   e <- new.env()
   suppressWarnings(sys.source(f,e))
   ## these are the items to check for, in no particular order
   .result <- e$.result
   parsers <- e$.parsers
-  result <- extract.docs.file(f,parsers)
+  result <- extract.docs.file(f, parsers, verbose=verbose)
   for(FUN in names(.result)){
-    if(verbose)cat(FUN,"")
     fun <- result[[FUN]]
     .fun <- .result[[FUN]]
     ## first check to make sure all the stored items are there
@@ -27,8 +28,10 @@ test.file <- function
       .res <- .fun[[N]]
       res <- fun[[N]]
       if(is.null(res) || is.na(res) || is.na(.res) || .res!=res){
-        cat("\n-----\n",res,"\n-----\nin ",FUN,
-            "$",N,", expected:\n-----\n",.res,"\n-----\n")
+        cat(
+          "\n-----\n",res,"\n-----\nin ",FUN,
+          "$",N,", expected:\n-----\n",.res,"\n-----\n",
+          sep="")
         stop("docs mismatch in ",f)
       }
     }
@@ -36,9 +39,10 @@ test.file <- function
     additional <- !names(fun)%in%names(.fun)
     show <- fun[additional] ##ignore NULL extracted items
     show <- show[!sapply(show,is.null)]
-    if(length(show)){
+    not.def <- show[names(show) != "definition"]
+    if(length(not.def)){
       cat("\n")
-      print(show)
+      print(not.def)
       stop("extracted some unexpected docs!")
     }
   }
@@ -55,8 +59,9 @@ test.file <- function
   ## to the check directory and read as a .Rprofile, as done in
   ## tools:::.runPackageTests ... is this a bug in R? Anyway for now
   ## let's just not run the R CMD check.
-  if(!is.null(e$.dontcheck) || !interactive())return()
-  make.package.and.check(f,parsers,verbose)
+  if(CRAN.checks && is.null(e$.dontcheck)){
+    make.package.and.check(f,parsers,verbose)
+  }
   if(verbose)cat("\n")
 }
 
@@ -79,7 +84,9 @@ make.package.and.check <- function
   sillydir <- system.file("silly",package="inlinedocs")
   tocopy <- file.path(sillydir,c("DESCRIPTION","NAMESPACE"))
   file.copy(tocopy,pkgdir)
-  file.copy(f,rdir)
+  f.lines.in <- readLines(f)
+  f.lines.out <- grep("^[.]parsers", f.lines.in, invert=TRUE, value=TRUE)
+  writeLines(f.lines.out, file.path(rdir, "code.R"))
   package.skeleton.dx(pkgdir,parsers)
   cmd <- sprintf("%s CMD check --as-cran %s",
                  file.path(R.home("bin"), "R"),
@@ -87,10 +94,17 @@ make.package.and.check <- function
   if(verbose)cat(cmd,"\n")
   checkLines <- system(cmd,intern=TRUE)
   all.warnLines <- grep("WARNING|ERROR|NOTE",checkLines,value=TRUE)
-  ignore.lines <-
-    c("Status",
-      "exercises",
-      "incoming feasibility")
+  ignore.lines <- c( # false positives.
+    ##Status: 1 WARNING, 2 NOTEs
+    "Status",
+    ##* checking R code for possible problems ... NOTE
+    "possible problems",
+    ##* checking for code which exercises the package ... WARNING
+    "exercises",
+    ##* checking DESCRIPTION meta-information ... NOTE
+    "meta-information",
+    ##* checking CRAN incoming feasibility ... NOTE
+    "incoming feasibility")
   ignore.regex <- paste(ignore.lines, collapse="|")
   badLines <- grep(ignore.regex, all.warnLines, value=TRUE, invert=TRUE)
   if(length(badLines)>0){

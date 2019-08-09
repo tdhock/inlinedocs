@@ -89,7 +89,7 @@ google <- function(src,...){
   lapply(c(docs,argsList),function(x)gsub("\n$","",x))
 }
 
-.parsers <- list(google=forfun(google))
+.parsers <- list(google=inlinedocs::forfun(google))
 
 ##src <- getSource(CalculateSampleCovariance)
 ## src <- getSource(google)

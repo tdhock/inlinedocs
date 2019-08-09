@@ -2,7 +2,7 @@
 \alias{prefixed.lines}
 \title{prefixed lines}
 \description{The primary mechanism of inline documentation is via consecutive
-groups of lines matching the specified prefix regular expression
+groups of lines matching the specified \code{\link{prefix}} regular expression
 "\code{^### }" (i.e. lines beginning with "\code{### }") are
 collected as follows into documentation sections:\describe{
 \item{description}{group starting at line 2 in the code}
@@ -20,12 +20,13 @@ described below.}
 
 
 
-\author{Toby Dylan Hocking <toby@sg.cs.titech.ac.jp> [aut, cre], Keith Ponting [aut], Thomas Wutzler [aut], Philippe Grosjean [aut], Markus Müller [aut], R Core Team [ctb, cph]}
+\author{Toby Dylan Hocking <toby.hocking@r-project.org> [aut, cre], Keith Ponting [aut], Thomas Wutzler [aut], Philippe Grosjean [aut], Markus MÃ¼ller [aut], R Core Team [ctb, cph]}
 
 
 
 
 \examples{
+
 test <- function
 ### the description
 (x,
@@ -39,4 +40,5 @@ test <- function
 src <- getSource(test)
 prefixed.lines(src)
 extract.xxx.chunks(src)
+
 }

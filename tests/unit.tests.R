@@ -1,20 +1,23 @@
 tdir <- system.file("testfiles",package="inlinedocs")
 testfiles <- Sys.glob(file.path(tdir,"*.R"))
-library(inlinedocs)
 options(warn=2)
 output.and.error <- function(f){
+  print(f)
   output <- capture.output({
-    result <- try(test.file(f, verbose=FALSE))
+    result <- try(inlinedocs::test.file(
+      f, CRAN.checks=CRAN.checks, verbose=TRUE))
   })
   list(output=output,
        result=result)
 }
-LAPPLY <- if(interactive() && require(parallel)){
-  options(mc.cores=detectCores())
-  mclapply
+LAPPLY <- if(interactive() && requireNamespace("future.apply")){
+  future::plan("multiprocess")
+  future.apply::future_lapply
 }else{
   lapply
 }
+
+CRAN.checks <- interactive() #need here because of parallel execution.
 result.lists <- LAPPLY(testfiles, output.and.error)
 names(result.lists) <- testfiles
 is.error <- sapply(result.lists, function(L)inherits(L$result, "try-error"))

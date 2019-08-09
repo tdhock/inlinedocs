@@ -11,12 +11,13 @@ should not be generated.}
 \value{A Parser Function that will delete items from the outer
 Documentation List.}
 
-\author{Toby Dylan Hocking <toby@sg.cs.titech.ac.jp> [aut, cre], Keith Ponting [aut], Thomas Wutzler [aut], Philippe Grosjean [aut], Markus Müller [aut], R Core Team [ctb, cph]}
+\author{Toby Dylan Hocking <toby.hocking@r-project.org> [aut, cre], Keith Ponting [aut], Thomas Wutzler [aut], Philippe Grosjean [aut], Markus MÃ¼ller [aut], R Core Team [ctb, cph]}
 
 
 
 
 \examples{
+
 silly.pkg <- system.file("silly",package="inlinedocs")
 owd <- setwd(tempdir())
 file.copy(silly.pkg,".",recursive=TRUE)
@@ -42,7 +43,7 @@ old <- file.info(Rd.paths)$mtime
 
 ## make sure there is at least 2 seconds elapsed, which is the
 ## resolution for recording times on windows file systems.
-Sys.sleep(4) 
+Sys.sleep(4)
 
 ## However, it will NOT generate Rd for files specified in
 ## do.not.generate, if they DO exist already.
@@ -56,4 +57,5 @@ stopifnot(mtimes["silly.example.Rd","changed"]==TRUE)
 
 unlink("silly",recursive=TRUE)
 setwd(owd)
+
 }

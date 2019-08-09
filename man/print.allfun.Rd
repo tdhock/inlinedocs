@@ -1,7 +1,7 @@
 \name{print.allfun}
 \alias{print.allfun}
 \title{print allfun}
-\description{Print method for functions constructed using forall.}
+\description{Print method for functions constructed using \code{\link{forall}}.}
 \usage{\method{print}{allfun}(x, ...)}
 \arguments{
   \item{x}{
@@ -12,7 +12,7 @@
 
 
 
-\author{Toby Dylan Hocking <toby@sg.cs.titech.ac.jp> [aut, cre], Keith Ponting [aut], Thomas Wutzler [aut], Philippe Grosjean [aut], Markus Müller [aut], R Core Team [ctb, cph]}
+\author{Toby Dylan Hocking <toby.hocking@r-project.org> [aut, cre], Keith Ponting [aut], Thomas Wutzler [aut], Philippe Grosjean [aut], Markus MÃ¼ller [aut], R Core Team [ctb, cph]}
 
 
 
