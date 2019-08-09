@@ -1,11 +1,11 @@
 tdir <- system.file("testfiles",package="inlinedocs")
 testfiles <- Sys.glob(file.path(tdir,"*.R"))
-library(inlinedocs)
 options(warn=2)
 output.and.error <- function(f){
   print(f)
   output <- capture.output({
-    result <- try(test.file(f, CRAN.checks=CRAN.checks, verbose=TRUE))
+    result <- try(inlinedocs::test.file(
+      f, CRAN.checks=CRAN.checks, verbose=TRUE))
   })
   list(output=output,
        result=result)

@@ -35,7 +35,7 @@ first defining instances, subsequent definitions of that generic
 also link back to the first defining instance.}
 \value{Returns an invisible list of .DocLink objects.}
 
-\author{Toby Dylan Hocking <toby.hocking@r-project.org> [aut, cre], Keith Ponting [aut], Thomas Wutzler [aut], Philippe Grosjean [aut], Markus MÃ¼ller [aut], R Core Team [ctb, cph]}
+\author{Toby Dylan Hocking <toby.hocking@r-project.org> [aut, cre], Keith Ponting [aut], Thomas Wutzler [aut], Philippe Grosjean [aut], Markus Müller [aut], R Core Team [ctb, cph]}
 
 
 
