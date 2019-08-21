@@ -281,16 +281,7 @@ package.skeleton.dx <- structure(function # Package skeleton deluxe
   if(interactive()){
     cmd <- sprintf("%s CMD check --as-cran silly",file.path(R.home("bin"), "R"))
     print(cmd)
-    checkLines <- system(cmd,intern=TRUE)
-    warnLines <- grep("WARNING",checkLines,value=TRUE)
-    if(length(warnLines)>0){
-      writeLines(checkLines)
-      cat("\n\nLines with WARNING:\n")
-      print(warnLines)
-      ## disable due to bug in R CMD check:
-      ## https://bugs.r-project.org/bugzilla3/show_bug.cgi?id=14875
-      ##stop("WARNING encountered in package check!")
-    }
+    system(cmd)
   }
   ## cleanup: remove the test package from current workspace again
   unlink("silly",recursive=TRUE)
@@ -320,11 +311,12 @@ replace.one <- function
   ## need to escape backslashes for faithful copying of the comments
   ## to the Rd file:
   REP <- paste(FIND1,"{",REP.esc,"}",sep="")
-  ## escape percent signs and backslashes in R code:
+  ## escape backslashes (only in examples for now)
   if(torep %in% c("examples")){
-    REP <- gsub("%", "\\\\%", REP, fixed=TRUE)
     REP <- gsub("\\", "\\\\", REP, fixed=TRUE)
   }
+  ## escape percent signs which may be in \code in any block.
+  REP <- gsub("%", "\\\\%", REP, fixed=TRUE)
   ## alias (in particular) need to change only the first one generated
   ## (generic methods in classes add to standard skeleton alias set)
   if ( torep %in% c("alias") ){

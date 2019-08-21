@@ -56,16 +56,7 @@ package.skeleton.dx("silly")
 if(interactive()){
   cmd <- sprintf("\%s CMD check --as-cran silly",file.path(R.home("bin"), "R"))
   print(cmd)
-  checkLines <- system(cmd,intern=TRUE)
-  warnLines <- grep("WARNING",checkLines,value=TRUE)
-  if(length(warnLines)>0){
-    writeLines(checkLines)
-    cat("\n\nLines with WARNING:\n")
-    print(warnLines)
-    ## disable due to bug in R CMD check:
-    ## https://bugs.r-project.org/bugzilla3/show_bug.cgi?id=14875
-    ##stop("WARNING encountered in package check!")
-  }
+  system(cmd)
 }
 ## cleanup: remove the test package from current workspace again
 unlink("silly",recursive=TRUE)
