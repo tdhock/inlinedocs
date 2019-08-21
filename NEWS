@@ -17,6 +17,10 @@ Rd generation for attrSetter<- functions?
 Functions with {} as default arguments => error. See
 etc/default-function.R
 
+2019.8.21
+
+escape percents in Rd examples.
+
 2019.7.30
 
 New default parser functions: internal.links, external.links,

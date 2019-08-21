@@ -1,4 +1,4 @@
-silly.example <- function
+silly.example <- structure(function
 ### this function does nothing in particular and does it very well
 (
  ##title<<Simple function arguments
@@ -36,11 +36,15 @@ silly.example <- function
   }
   ##note<< a note
   ##references<< a reference
-  ##seealso<< \code{\link{Silly-class}}
+  ##seealso<< \code{\link{SillyTest-class}}
   ##keyword<<documentation utilities
   invisible(res)
 ### invisible something not unrelated to first
-}
+}, ex=function(){
+
+  silly.example(1, TRUE)
+
+})
 
 setClass("SillyTest", # S4 classes can be documented as well
 ### The Silly class does nothing much either

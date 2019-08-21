@@ -92,7 +92,7 @@ make.package.and.check <- function
                  file.path(R.home("bin"), "R"),
                  pkgdir)
   if(verbose)cat(cmd,"\n")
-  checkLines <- system(cmd,intern=TRUE)
+  checkLines <- system(cmd, intern=TRUE, ignore.stderr=!verbose)
   all.warnLines <- grep("WARNING|ERROR|NOTE",checkLines,value=TRUE)
   ignore.lines <- c( # false positives.
     ##Status: 1 WARNING, 2 NOTEs
