@@ -88,11 +88,11 @@ make.package.and.check <- function
   f.lines.out <- grep("^[.]parsers", f.lines.in, invert=TRUE, value=TRUE)
   writeLines(f.lines.out, file.path(rdir, "code.R"))
   package.skeleton.dx(pkgdir,parsers)
-  checkLines <- system2(
-    file.path(R.home("bin"), "R"),
-    c("CMD", "check", "--as-cran", pkgdir),
-    stdout=TRUE,
-    stderr=TRUE)
+  cmd <- sprintf("%s CMD check --as-cran %s",
+                 file.path(R.home("bin"), "R"),
+                 pkgdir)
+  if(verbose)cat(cmd,"\n")
+  checkLines <- system(cmd,intern=TRUE)
   all.warnLines <- grep("WARNING|ERROR|NOTE",checkLines,value=TRUE)
   ignore.lines <- c( # false positives.
     ##Status: 1 WARNING, 2 NOTEs
