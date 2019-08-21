@@ -311,7 +311,7 @@ replace.one <- function
   verbose=FALSE
 ### cat messages?
  ){
-  escape.backslashes <- function(x)gsub("\\\\","\\\\\\\\",x)
+  escape.backslashes <- function(x)gsub("\\","\\\\",x, fixed=TRUE)
   if(verbose)cat(" ",torep,sep="")
   FIND1 <- escape.backslashes(torep)
   FIND <- gsub("([{}])","\\\\\\1",FIND1)
@@ -320,8 +320,11 @@ replace.one <- function
   ## need to escape backslashes for faithful copying of the comments
   ## to the Rd file:
   REP <- paste(FIND1,"{",REP.esc,"}",sep="")
-  ## escape percent signs in R code:
-  REP <- gsub("%","\\\\\\\\%",REP)
+  ## escape percent signs and backslashes in R code:
+  if(torep %in% c("examples")){
+    REP <- gsub("%", "\\\\%", REP, fixed=TRUE)
+    REP <- gsub("\\", "\\\\", REP, fixed=TRUE)
+  }
   ## alias (in particular) need to change only the first one generated
   ## (generic methods in classes add to standard skeleton alias set)
   if ( torep %in% c("alias") ){
