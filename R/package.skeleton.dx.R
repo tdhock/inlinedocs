@@ -579,8 +579,10 @@ modify.Rd.file <- function
     ## by default R uses width.cutoff=60L but that results in wide
     ## lines with more than 90 characters (which generates a NOTE on R
     ## CMD check) for some functions such as testfiles/wide.lines.R
-    ## Thanks to Jannis v. Buttlar for the bug report.
-    usage.vec <- deparse(parsed[[1]], width.cutoff=50L)
+    ## Thanks to Jannis v. Buttlar for the bug report. TDH 5 Dec 2019
+    ## ?deparse in R-3.6.1 says that width.cutoff=20 is the smallest
+    ## possible value.
+    usage.vec <- deparse(parsed[[1]], width.cutoff=20L)
     utxt <- sprintf("usage{%s}\n",paste(usage.vec,collapse="\n"))
   }
   if(length(grep("usage[{]data",utxt))){

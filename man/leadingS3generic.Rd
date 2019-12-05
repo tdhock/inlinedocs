@@ -2,7 +2,8 @@
 \alias{leadingS3generic}
 \title{check whether function name is an S3 generic}
 \description{Determines whether a function \code{name} looks like an S3 generic function}
-\usage{leadingS3generic(name, env, ...)}
+\usage{leadingS3generic(name, 
+    env, ...)}
 \arguments{
   \item{name}{\code{name} of function}
   \item{env}{environment to search for additional generics}
@@ -24,7 +25,7 @@ of class y.z}
 
 If no matching generic functions are found, returns an empty list.}
 
-\author{Toby Dylan Hocking <toby.hocking@r-project.org> [aut, cre], Keith Ponting [aut], Thomas Wutzler [aut], Philippe Grosjean [aut], Markus Müller [aut], R Core Team [ctb, cph]}
+\author{Toby Dylan Hocking <toby.hocking@r-project.org> [aut, cre], Keith Ponting [aut], Thomas Wutzler [aut], Philippe Grosjean [aut], Markus MÃ¼ller [aut], R Core Team [ctb, cph]}
 
 
 

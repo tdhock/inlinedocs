@@ -3,7 +3,8 @@
 \title{apply parsers}
 \description{Parse \code{code} to r objs, then run all the \code{parsers} and return the
 documentation list.}
-\usage{apply.parsers(code, parsers = default.parsers, verbose = FALSE, 
+\usage{apply.parsers(code, parsers = default.parsers, 
+    verbose = FALSE, 
     ...)}
 \arguments{
   \item{code}{Character vector of \code{code} lines.}
@@ -14,7 +15,7 @@ documentation list.}
 
 \value{A list of extracted documentation from \code{code}.}
 
-\author{Toby Dylan Hocking <toby.hocking@r-project.org> [aut, cre], Keith Ponting [aut], Thomas Wutzler [aut], Philippe Grosjean [aut], Markus Müller [aut], R Core Team [ctb, cph]}
+\author{Toby Dylan Hocking <toby.hocking@r-project.org> [aut, cre], Keith Ponting [aut], Thomas Wutzler [aut], Philippe Grosjean [aut], Markus MÃ¼ller [aut], R Core Team [ctb, cph]}
 
 
 

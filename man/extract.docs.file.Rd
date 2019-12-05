@@ -2,7 +2,8 @@
 \alias{extract.docs.file}
 \title{extract docs file}
 \description{Apply all \code{parsers} relevant to extract info from just 1 code file.}
-\usage{extract.docs.file(f, parsers = NULL, ...)}
+\usage{extract.docs.file(f, 
+    parsers = NULL, ...)}
 \arguments{
   \item{f}{File name of R code to read and parse.}
   \item{parsers}{Parser Functions to use to parse the code and extract
@@ -12,7 +13,7 @@ documentation.}
 
 
 
-\author{Toby Dylan Hocking <toby.hocking@r-project.org> [aut, cre], Keith Ponting [aut], Thomas Wutzler [aut], Philippe Grosjean [aut], Markus Müller [aut], R Core Team [ctb, cph]}
+\author{Toby Dylan Hocking <toby.hocking@r-project.org> [aut, cre], Keith Ponting [aut], Thomas Wutzler [aut], Philippe Grosjean [aut], Markus MÃ¼ller [aut], R Core Team [ctb, cph]}
 
 
 
