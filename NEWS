@@ -17,6 +17,11 @@ Rd generation for attrSetter<- functions?
 Functions with {} as default arguments => error. See
 etc/default-function.R
 
+2019.12.5
+
+deparse(width.cutoff=20L) is the minimal value to avoid long lines in
+Rd usage section for CRAN check.
+
 2019.8.21
 
 escape percents in Rd examples.
