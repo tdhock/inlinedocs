@@ -21,4 +21,4 @@ Depends: methods, utils, R (>= 2.9)
 License: GPL-2 | GPL-3
 LazyLoad: yes
 Encoding: UTF-8
-Suggests: future.apply, future
+Suggests: future.apply, future, R.methodsS3
