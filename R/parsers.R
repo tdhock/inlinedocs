@@ -597,6 +597,12 @@ forfun.parsers <- list(
     if(is.empty(doc$definition) && !is.empty(src))
       list(definition=src)
     else list()
+  },
+  arguments.names=function(o,doc,...){
+    arg.vec <- names(formals(o))
+    item.vec <- sprintf("item{%s}", arg.vec)
+    has.doc <- item.vec %in% names(doc)
+    structure(as.list(arg.vec), names=item.vec)[!has.doc]
   })
 
 ### List of Parser Functions that can be applied to any object.
