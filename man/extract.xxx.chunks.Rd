@@ -7,8 +7,7 @@ documentation in that source code.}
     name.fun = "(unnamed function)", 
     ...)}
 \arguments{
-  \item{src}{The source lines of the function to examine, as a character
-vector.}
+  \item{...}{...}
   \item{name.fun}{The name of the function/chunk to use in warning messages.}
   \item{\dots}{ignored.}
 }
@@ -68,7 +67,7 @@ all open describe blocks.}
 name N we will look for N\{...\} in the Rd file and replace it
 with the string in this list (implemented in \code{\link{modify.Rd.file}}).}
 
-\author{Toby Dylan Hocking <toby.hocking@r-project.org> [aut, cre], Keith Ponting [aut], Thomas Wutzler [aut], Philippe Grosjean [aut], Markus MÃ¼ller [aut], R Core Team [ctb, cph]}
+\author{Toby Dylan Hocking <toby.hocking@r-project.org> [aut, cre], Keith Ponting [aut], Thomas Wutzler [aut], Philippe Grosjean [aut], Markus Müller [aut], R Core Team [ctb, cph]}
 \note{\code{alias} extras are automatically split at new lines.
 
 \code{keyword} extras are automatically split at white space,
