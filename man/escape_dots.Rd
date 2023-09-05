@@ -1,11 +1,10 @@
-\name{combine}
-\alias{combine}
-\title{combine}
-\description{combine lists or character strings}
-\usage{combine(x, y)}
+\name{escape_dots}
+\alias{escape_dots}
+\title{escape dots}
+\description{Convert ... to \\dots}
+\usage{escape_dots(arg)}
 \arguments{
-  \item{x}{x }
-  \item{y}{y }
+  \item{arg}{arg }
 }
 
 

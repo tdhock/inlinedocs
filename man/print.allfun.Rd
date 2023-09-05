@@ -4,9 +4,8 @@
 \description{Print method for functions constructed using \code{\link{forall}}.}
 \usage{\method{print}{allfun}(x, ...)}
 \arguments{
-  \item{x}{x}
-  \item{\dots}{
-}
+  \item{x}{x }
+  \item{\dots}{\dots }
 }
 
 
