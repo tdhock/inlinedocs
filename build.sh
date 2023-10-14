@@ -5,6 +5,7 @@ PKG=$(grep $PREGEX DESCRIPTION|sed "s/$PREGEX//")
 echo Package from DESCRIPTION: $PKG
 
 echo Installing and generating documentation
+R -e "if(!require(devtools))install.packages('devtools');devtools::install_dev_deps()"
 R CMD INSTALL .
 R -e "inlinedocs::package.skeleton.dx('.')"
 
