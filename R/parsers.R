@@ -184,6 +184,11 @@ kill.prefix.whitespace <- function
 ### Character vector of code lines with preceding whitespace removed.
 }
 
+### Convert ... to \\dots
+escape_dots <- function(arg){
+  gsub("...", "\\dots", arg, fixed = TRUE)
+}
+
 prefixed.lines <- structure(function(src,...){
 ### The primary mechanism of inline documentation is via consecutive
 ### groups of lines matching the specified prefix regular expression
@@ -226,7 +231,7 @@ prefixed.lines <- structure(function(src,...){
       arg <- gsub("^([^=,]*)[=,].*", "\\1", arg)
       ##twutz: remove trailing whitespaces
       arg <- gsub("^([^ \t]*)([ \t]+)$","\\1",arg)
-      arg <- gsub("...", "\\dots", arg, fixed = TRUE)
+      arg <- escape_dots(arg)
       paste("item{",arg,"}",sep="")
     } else {
       next;
@@ -597,6 +602,12 @@ forfun.parsers <- list(
     if(is.empty(doc$definition) && !is.empty(src))
       list(definition=src)
     else list()
+  },
+  arguments.names=function(o,doc,...){
+    arg.vec <- escape_dots(names(formals(o)))
+    item.vec <- sprintf("item{%s}", arg.vec)
+    has.doc <- item.vec %in% names(doc)
+    structure(as.list(paste0(arg.vec," ")), names=item.vec)[!has.doc]
   })
 
 ### List of Parser Functions that can be applied to any object.

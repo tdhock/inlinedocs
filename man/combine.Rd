@@ -4,10 +4,8 @@
 \description{combine lists or character strings}
 \usage{combine(x, y)}
 \arguments{
-  \item{x}{
-}
-  \item{y}{
-}
+  \item{x}{x}
+  \item{y}{y}
 }
 
 

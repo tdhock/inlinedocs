@@ -12,8 +12,7 @@ These may be added to by use of the \code{##<<} constructs
 described below.}
 \usage{prefixed.lines(src, ...)}
 \arguments{
-  \item{src}{
-}
+  \item{...}{...}
   \item{\dots}{
 }
 }

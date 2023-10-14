@@ -6,7 +6,7 @@
     env, ...)}
 \arguments{
   \item{name}{\code{name} of function}
-  \item{env}{environment to search for additional generics}
+  \item{...}{...}
   \item{\dots}{ignored here}
 }
 \details{This function is one of the default parsers, but exposed as

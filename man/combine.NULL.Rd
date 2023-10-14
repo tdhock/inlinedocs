@@ -4,10 +4,8 @@
 \description{\code{\link{combine}} NULL objects.}
 \usage{\method{combine}{NULL}(x, y)}
 \arguments{
-  \item{x}{
-}
-  \item{y}{
-}
+  \item{x}{x}
+  \item{y}{y}
 }
 
 

@@ -7,8 +7,7 @@ documentation in that source code.}
     name.fun = "(unnamed function)", 
     ...)}
 \arguments{
-  \item{src}{The source lines of the function to examine, as a character
-vector.}
+  \item{...}{...}
   \item{name.fun}{The name of the function/chunk to use in warning messages.}
   \item{\dots}{ignored.}
 }

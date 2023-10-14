@@ -4,10 +4,8 @@
 \description{\code{\link{combine}} lists by adding elements or adding to existing elements}
 \usage{\method{combine}{list}(x, y)}
 \arguments{
-  \item{x}{
-}
-  \item{y}{
-}
+  \item{x}{x}
+  \item{y}{y}
 }
 
 \value{A list, same type as \code{x}, but with added elements from \code{y}.}

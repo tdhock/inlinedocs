@@ -4,8 +4,7 @@
 \description{For each function in the package, do something.}
 \usage{forfun(FUN)}
 \arguments{
-  \item{FUN}{
-}
+  \item{FUN}{FUN}
 }
 
 

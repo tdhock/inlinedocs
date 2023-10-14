@@ -11,11 +11,10 @@ citEntry(entry = "Article",
   volume       = "54",
   number       = "6",
   pages        = "1--20",
-  url          = "http://www.jstatsoft.org/v54/i06/",
-
+  doi = "10.18637/jss.v054.i06",
   textVersion  =
   paste("Toby Dylan Hocking, Thomas Wutzler, Keith Ponting, Philippe Grosjean (2013).",
         "Sustainable, Extensible Documentation Generation Using inlinedocs.",
         "Journal of Statistical Software, 54(6), 1-20.",
-        "URL http://www.jstatsoft.org/v54/i06/.")
+        "DOI:10.18637/jss.v054.i06")
 )
