@@ -103,6 +103,8 @@ make.package.and.check <- function
     "exercises",
     ##* checking DESCRIPTION meta-information ... NOTE
     "meta-information",
+    ##ERROR: ld.so: object 'libgtk3-nocsd.so.0' from LD_PRELOAD cannot be preloaded (failed to map segment from shared object): ignored.
+    "LD_PRELOAD",
     ##* checking CRAN incoming feasibility ... NOTE
     "incoming feasibility")
   ignore.regex <- paste(ignore.lines, collapse="|")

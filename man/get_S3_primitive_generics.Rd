@@ -4,7 +4,7 @@
 \description{Copied from R-3.0.1, to support \code{\link{getKnownS3generics}}.}
 \usage{get_S3_primitive_generics(include_group_generics = TRUE)}
 \arguments{
-  \item{include_group_generics}{include_group_generics}
+  \item{include_group_generics}{include_group_generics }
 }
 
 

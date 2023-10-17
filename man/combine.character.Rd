@@ -5,8 +5,8 @@
 \usage{\method{combine}{character}(x, 
     y)}
 \arguments{
-  \item{x}{x}
-  \item{y}{y}
+  \item{x}{x }
+  \item{y}{y }
 }
 
 

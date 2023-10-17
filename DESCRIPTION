@@ -1,7 +1,7 @@
 Package: inlinedocs
 Title: Convert Inline Comments to Documentation
 Type: Package
-Version: 2019.12.5
+Version: 2023.9.4
 Authors@R: c(person("Toby Dylan","Hocking",role=c("aut","cre"),
              email="toby.hocking@r-project.org"),
 	  person("Keith","Ponting",role="aut"),
@@ -15,8 +15,8 @@ Description: Generates Rd files from R source code with comments.
  (2) function argument names are not repeated in comments, and
  (3) examples are defined in R code, not comments.
  It is also easy to define a new syntax.
-URL: http://github.com/tdhock/inlinedocs
-BugReports: http://github.com/tdhock/inlinedocs/issues
+URL: https://github.com/tdhock/inlinedocs
+BugReports: https://github.com/tdhock/inlinedocs/issues
 Depends: methods, utils, R (>= 2.9)
 License: GPL-2 | GPL-3
 LazyLoad: yes
