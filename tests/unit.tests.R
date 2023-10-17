@@ -11,7 +11,7 @@ output.and.error <- function(f){
        result=result)
 }
 LAPPLY <- if(interactive() && requireNamespace("future.apply")){
-  future::plan("multiprocess")
+  future::plan("multisession")
   future.apply::future_lapply
 }else{
   lapply

@@ -8,7 +8,14 @@ spaced <- function
 ### some result
 
 }
-.result <- 
- list(spaced = list(definition = "spaced <- function\n### desc\n(arg1,\n arg2\n ){\n  x <- arg1\n  x*2\n### some result\n\n}",
-     format = "", title = "spaced",value="some result",description="desc"))
-
+.result <- list(
+  spaced = list(
+    definition = "spaced <- function\n### desc\n(arg1,\n arg2\n ){\n  x <- arg1\n  x*2\n### some result\n\n}",
+    format = "",
+    title = "spaced",
+    value="some result",
+    description="desc",
+    "item{arg1}"="arg1 ",
+    "item{arg2}"="arg2 "
+  )
+)

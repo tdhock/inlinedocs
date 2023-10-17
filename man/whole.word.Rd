@@ -4,8 +4,7 @@
 \description{Regex for a whole word to code/link tags.}
 \usage{whole.word(...)}
 \arguments{
-  \item{\dots}{
-}
+  \item{\dots}{\dots }
 }
 
 

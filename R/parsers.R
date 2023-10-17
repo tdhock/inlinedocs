@@ -60,12 +60,12 @@ do.not.generate <- structure(function
 
 ### combine NULL objects.
 combine.NULL<-function(x,y){
-    if (class(x) == "NULL"){
+    if (is.null(x)){
         # print(paste("mm x=",x))
         # print(paste("mm class(x)=",class(x)))
         x=list("")
     }
-    if (class(y) == "NULL"){
+    if (is.null(y)){
         # print(paste("mm y=",y))
         # print(paste("mm class(y)=",class(y)))
         y=list("")
@@ -766,7 +766,7 @@ extra.code.docs <- function # Extract documentation from code chunks
   extract.docs <- function(on){
     res <- try({o <- objs[[on]]
                 extract.docs.try(o, on)},FALSE)
-    if(class(res)=="try-error"){
+    if(inherits(res,"try-error")){
       cat("Failed to extract docs for: ",on,"\n\n")
       list()
     } else if(0 == length(res) && inherits(objs[[on]],"standardGeneric")){
