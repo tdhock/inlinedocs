@@ -1,16 +1,16 @@
 [[http://inlinedocs.r-forge.r-project.org/][inlinedocs]]
 
-[[https://travis-ci.org/tdhock/inlinedocs][https://travis-ci.org/tdhock/inlinedocs.svg]]
-
 ** Installation
 
 As of 3 June 2014, inlinedocs from R-Forge is deprecated (please do
-not use it). To install the up-to-date inlinedocs from this GitHub
+not use it). Please instead install from CRAN or this GitHub
 repository,
 
 #+BEGIN_SRC R
-if(!requireNamespace("devtools"))install.packages("devtools")
-devtools::install_github("tdhock/inlinedocs")
+  install.packages("inlinedocs")
+
+  if(!requireNamespace("remotes"))install.packages("remotes")
+  remotes::install_github("tdhock/inlinedocs")
 #+END_SRC
 
 ** Write documentation in comments
@@ -30,6 +30,6 @@ inlinedocs::package.skeleton.dx("path/to/your/pkg")
 
 Don't like the default syntax? Want to add a new feature? You can
 write your own Parser Functions that take your code/comments from *.R
-files as input, and return documentation as output. Please read [[https://www.jstatsoft.org/article/view/v054i06][the
-JSS paper]] for an overview of how this works, and see
+files as input, and return documentation as output. 
+Please read [[https://www.jstatsoft.org/article/view/v054i06][the JSS paper]] for an overview of how this works, and see
 [[file:inst/testfiles/alternate.R]] for an example.
