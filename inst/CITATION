@@ -1,6 +1,6 @@
 citHeader("To cite inlinedocs in publications use:")
 
-bibentry(entry = "Article",
+bibentry("Article",
   title        = "Sustainable, Extensible Documentation Generation Using {inlinedocs}",
   author       = c(person("Toby Dylan","Hocking",role=c("aut","cre"),
              email="toby.hocking@r-project.org"),

@@ -1,4 +1,5 @@
 \name{DocLink-class}
+\Rdversion{1.1}
 \docType{class}
 \alias{DocLink-class}
 \alias{DocLink}
