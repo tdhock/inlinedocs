@@ -769,7 +769,7 @@ extra.code.docs <- function # Extract documentation from code chunks
     if(inherits(res,"try-error")){
       cat("Failed to extract docs for: ",on,"\n\n")
       list()
-    } else if(0 == length(res) && inherits(objs[[on]],"standardGeneric")){
+    } else if(0 == length(res) && inherits(objs[[on]],"genericFunction")){
       NULL
     } else if(0 == length(res) && "function" %in% class(o)
               && 1 == length(osource <- getSource(o))
